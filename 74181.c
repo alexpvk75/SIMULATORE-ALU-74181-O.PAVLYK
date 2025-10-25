@@ -3030,7 +3030,6 @@ int main() {
         else if (scelta == 8) {
             stampa_memoria();
             stato_memoria();
-            int c;
             continue;
         }
         else if (scelta == 9) {
