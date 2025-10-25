@@ -2877,6 +2877,7 @@ int main() {
             simula_alu_74181();
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
+            attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         else if (scelta == 2) {
@@ -2884,12 +2885,14 @@ int main() {
             simula_alu_74181();
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
+            attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         else if (scelta == 3) {
             operazioni_algebriche();
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
+            attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         else if (scelta == 4) {
@@ -2952,6 +2955,7 @@ int main() {
             }
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
+            attendi_cicli_clock_equivalenti_a_secondi(3.0);
         }
         else if (scelta == 5) {
             char risposta[3];
@@ -3013,11 +3017,13 @@ int main() {
             }
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
+            attendi_cicli_clock_equivalenti_a_secondi(3.0);
         }
         else if (scelta == 6) {
             ALU32();
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
+            attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         else if (scelta == 7) {
@@ -3025,15 +3031,18 @@ int main() {
             ALU32();
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
+            attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         else if (scelta == 8) {
             stampa_memoria();
             stato_memoria();
+            attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         else if (scelta == 9) {
             misura_ciclo_clock();
+            attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         else {
