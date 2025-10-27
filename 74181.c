@@ -1994,226 +1994,6 @@ void pulire_buffer() {
     int c;
     while (porta_and(porta_not((c = getchar()) == '\n'),porta_not(c == EOF)));
 }
-void operazioni_algebriche() {
-    while (1) {
-        char operazione[30];
-        int scelta = 0;
-        printf("\n╔══════════════════════════════════════════════════════╗\n");
-        printf("║                 CALCOLATRICE AVANZATA                ║\n");
-        printf("╚══════════════════════════════════════════════════════╝\n");
-        printf(">> Seleziona un'operazione:\n");
-        printf("   1 - Somma di numeri\n");
-        printf("   2 - Sottrazione sequenziale\n");
-        printf("   3 - Moltiplicazione di numeri\n");
-        printf("   4 - Divisione sequenziale\n");
-        printf("   5 - Calcola espressione (es: (3+5)*2-4)\n");
-        printf("   6 - Esci\n");
-        printf(">> Scelta (numero o parola): ");
-        scanf("%s", operazione);
-
-        if (strlen(operazione) == 1 && isdigit(operazione[0])) {
-            scelta = operazione[0] - '0';
-        } else {
-            for (int i = 0; operazione[i]; i++)
-                operazione[i] = tolower(operazione[i]);
-            if (strcmp(operazione, "somma") == 0) scelta = 1;
-            else if (strcmp(operazione, "sottrazione") == 0) scelta = 2;
-            else if (strcmp(operazione, "moltiplicazione") == 0) scelta = 3;
-            else if (strcmp(operazione, "divisione") == 0) scelta = 4;
-            else if (strcmp(operazione, "calcola") == 0) scelta = 5;
-            else if (strcmp(operazione, "esci") == 0) scelta = 6;
-        }
-
-        FILE *file = fopen("risultato_operazione.txt", "a");
-        if (!file) {
-            printf("Errore: impossibile aprire il file di output.\n");
-            continue;
-        }
-
-        switch (scelta) {
-            case 1: { 
-                double val, risultato = 0;
-                printf("\n╔══════════════════════════════════════════════════════╗\n");
-                printf("║                    SOMMA DI NUMERI                   ║\n");
-                printf("╚══════════════════════════════════════════════════════╝\n");
-                printf("Inserisci i numeri da sommare (scrivi una lettera per terminare):\n");
-                while (scanf("%lf", &val) == 1)
-                    risultato += val;
-                printf("\n────────────────────────────────────────────────────────\n");
-                printf("Risultato finale: %.2lf\n", risultato);
-                printf("────────────────────────────────────────────────────────\n");
-                fprintf(file, "\n[OPERAZIONE: SOMMA]\nRisultato: %.2lf\n", risultato);
-                salva_in_memoria(risultato);
-                fclose(file);
-                while (getchar() != '\n');
-                continue;
-            }
-            case 2: { 
-                double val, risultato;
-                int count = 0;
-                printf("\n╔══════════════════════════════════════════════════════╗\n");
-                printf("║                SOTTRAZIONE SEQUENZIALE               ║\n");
-                printf("╚══════════════════════════════════════════════════════╝\n");
-                printf("Inserisci i numeri da sottrarre (scrivi una lettera per terminare):\n");
-                while (scanf("%lf", &val) == 1) {
-                    if (count == 0) risultato = val;
-                    else risultato -= val;
-                    count++;
-                }
-                if (count == 0) {
-                    printf("Nessun numero inserito.\n");
-                    fclose(file);
-                    while (getchar() != '\n');
-                    continue;
-                }
-                printf("\n────────────────────────────────────────────────────────\n");
-                printf("Risultato finale: %.2lf\n", risultato);
-                printf("────────────────────────────────────────────────────────\n");
-                fprintf(file, "\n[OPERAZIONE: SOTTRAZIONE]\nRisultato: %.2lf\n", risultato);
-                salva_in_memoria(risultato);
-                fclose(file);
-                while (getchar() != '\n');
-                continue;
-            }
-            case 3: { 
-                double val, risultato = 1;
-                int count = 0;
-                printf("\n╔══════════════════════════════════════════════════════╗\n");
-                printf("║               MOLTIPLICAZIONE DI NUMERI              ║\n");
-                printf("╚══════════════════════════════════════════════════════╝\n");
-                printf("Inserisci i numeri da moltiplicare (scrivi una lettera per terminare):\n");
-                while (scanf("%lf", &val) == 1) {
-                    risultato *= val;
-                    count++;
-                }
-                if (count == 0) {
-                    printf("Nessun numero inserito.\n");
-                    fclose(file);
-                    while (getchar() != '\n');
-                    continue;
-                }
-                printf("\n────────────────────────────────────────────────────────\n");
-                printf("Risultato finale: %.2lf\n", risultato);
-                printf("────────────────────────────────────────────────────────\n");
-                fprintf(file, "\n[OPERAZIONE: MOLTIPLICAZIONE]\nRisultato: %.2lf\n", risultato);
-                salva_in_memoria(risultato);
-                fclose(file);
-                while (getchar() != '\n');
-                continue;
-            }
-            case 4: { 
-                double val, risultato;
-                int count = 0;
-                printf("\n╔══════════════════════════════════════════════════════╗\n");
-                printf("║                DIVISIONE SEQUENZIALE                 ║\n");
-                printf("╚══════════════════════════════════════════════════════╝\n");
-                printf("Inserisci i numeri da dividere (scrivi una lettera per terminare):\n");
-                while (scanf("%lf", &val) == 1) {
-                    if (count == 0) risultato = val;
-                    else {
-                        if (val == 0) {
-                            printf("Errore: divisione per zero!\n");
-                            break;
-                        }
-                        risultato /= val;
-                    }
-                    count++;
-                }
-                if (count < 2) {
-                    printf("Serve almeno 2 numeri.\n");
-                    fclose(file);
-                    while (getchar() != '\n');
-                    continue;
-                }
-                printf("\n────────────────────────────────────────────────────────\n");
-                printf("Risultato finale: %.2lf\n", risultato);
-                printf("────────────────────────────────────────────────────────\n");
-                fprintf(file, "\n[OPERAZIONE: DIVISIONE]\nRisultato: %.2lf\n", risultato);
-                salva_in_memoria(risultato);
-                fclose(file);
-                while (getchar() != '\n');
-                continue;
-            }
-            case 5: {
-                char input[256];
-                pulire_buffer();
-                printf("\n╔══════════════════════════════════════════════════════╗\n");
-                printf("║               CALCOLO DI ESPRESSIONE                 ║\n");
-                printf("╚══════════════════════════════════════════════════════╝\n");
-                printf("Inserisci un'espressione (es: (3+5)*2-4): ");
-                if (!fgets(input, sizeof(input), stdin)) {
-                  fprintf(stderr, "Input error.\n");
-                  fclose(file);
-                  continue;
-                }
-                size_t len = strlen(input);
-                if (len > 0 && input[len-1] == '\n') input[len-1] = '\0';
-                if (strlen(input) == 0) {
-                    printf("Espressione vuota.\n");
-                    fclose(file);
-                    continue;
-                }
-                if (!is_safe_expr(input)) {
-                    printf("Espressione non valida: contiene caratteri non permessi o parentesi sbilanciate.\n");
-                    fclose(file);
-                    continue;
-                }
-                char comando[512];
-
-#ifdef _WIN32
-                int n = snprintf(comando, sizeof(comando), "set /a %s", input);
-#else
-                int n = snprintf(comando, sizeof(comando), "echo $(( %s ))", input);
-#endif
-                if (n < 0 || n >= (int)sizeof(comando)) {
-                    fprintf(stderr, "Espresssione troppo lunga.\n");
-                    fclose(file);
-                    continue;
-                }
-#ifdef _WIN32
-                FILE *fp = _popen(comando, "r");
-#else
-                FILE *fp = popen(comando, "r");
-#endif
-                if (!fp) {
-                    printf("Errore nell'elaborazione dell'espressione.\n");
-                    fclose(file);
-                    continue;
-                }
-                long long int_res = 0;
-                int scan_ok = fscanf(fp, "%lld", &int_res);
-#ifdef _WIN32
-                _pclose(fp);
-#else
-                pclose(fp);
-#endif
-                if (scan_ok != 1) {
-                    printf("Impossibile leggere il risultato (output inatteso).\n");
-                    fclose(file);
-                    continue;
-                }
-                double risultato = (double)int_res;
-
-                printf("\n────────────────────────────────────────────────────────\n");
-                printf("Espressione: %s\n", input);
-                printf("Risultato: %.2lf\n", risultato);
-                printf("────────────────────────────────────────────────────────\n");
-                fprintf(file, "\n[OPERAZIONE: ESPRESSIONE]\nEspressione: %s\nRisultato: %.2lf\n", input, risultato);
-                salva_in_memoria(risultato);
-                fclose(file);
-                continue;
-            }
-            case 6:
-                printf("\nChiusura del programma...\n");
-                fclose(file);
-                return;
-            default:
-                printf("\nOperazione non riconosciuta.\n");
-                fclose(file);
-                continue;
-        }
-    }
-}
 
 void misura_ciclo_clock() {
     printf("\n==============================\n");
@@ -2243,42 +2023,17 @@ int main() {
     char input[10];
     while (1) {   
         printf("\n╔════════════════════════════════════════════════════════════╗\n");
-        printf("║                ________|          |________                ║\n");
-        printf("║               |       /   ||||||   \\       |               ║\n");
-        printf("║               |     ,'              `.     |               ║\n");
-        printf("║               |   ,'                  `.   |               ║\n");
-        printf("║               | ,'   ||||||||||||||||   `. |               ║\n");
-        printf("║               ,'  /____________________\\  `.               ║\n");
-        printf("║              /______________________________\\              ║\n");
-        printf("║             |                                |             ║\n");
-        printf("║             |                                |             ║\n");
-        printf("║             |                                |             ║\n");
-        printf("║             |________________________________|             ║\n");
-        printf("║               |____________________------__|               ║\n");
-        printf("║                                                            ║\n");
-        printf("║   ,----------------------------------------------------,   ║\n");
-        printf("║   | [][][][][]  [][][][][]  [][][][]  [][__]  [][][][] |   ║\n");
-        printf("║   |                                                    |   ║\n");
-        printf("║   |  [][][][][][][][][][][][][][_]    [][][]  [][][][] |   ║\n");
-        printf("║   |  [_][][][][][][][][][][][][][ |   [][][]  [][][][] |   ║\n");
-        printf("║   | [][_][][][][][][][][][][][][]||     []    [][][][] |   ║\n");
-        printf("║   | [__][][][][][][][][][][][][__]    [][][]  [][][]|| |   ║\n");
-        printf("║   |   [__][________________][__]              [__][]|| |   ║\n");
-        printf("║   `----------------------------------------------------'   ║\n");
         printf("║                                                            ║\n");
         printf("║                    SIMULATORE ALU 74181                    ║\n");
         printf("║                                                            ║\n");
         printf("╠════════════════════════════════════════════════════════════╣\n");
-        printf("║    1. Operazioni Logiche (ALU 74181 - Singolo)             ║\n");
-        printf("║    2. Operazioni Logiche (ALU 74181 - Singolo con clock)   ║\n");
-        printf("║    3. Operazioni Algebriche                                ║\n");
-        printf("║    4[3]. Convertitore Binario → Decimale                      ║\n");
-        printf("║    5[4]. Convertitore Decimale → Binario                      ║\n");
-        printf("║    6[5]. ALU in Modalità PIPO (32 bit - 8x74181)              ║\n");
-        printf("║    7[6]. ALU in Modalità PIPO (32 bit - 8x74181 con clock)    ║\n");
-        printf("║    8. Visualizza Memoria                                   ║\n");
-        printf("║    9. Calcolo del Clock                                    ║\n");
         printf("║    0. Esci                                                 ║\n");
+        printf("║    1. ALU 74181 a 4 bit                                    ║\n");
+        printf("║    2. ALU 74181 a 4 bit (con clock)                        ║\n");
+        printf("║    3. Convertitore Binario → Decimale                      ║\n");
+        printf("║    4. Convertitore Decimale → Binario                      ║\n");
+        printf("║    5. ALU a 32 bit - 8x74181                               ║\n");
+        printf("║    6. ALU a 32 bit - 8x74181 (con clock)                   ║\n");
         printf("╚════════════════════════════════════════════════════════════╝\n");
         printf(">> Inserisci la tua scelta: ");
         if (fgets(input, sizeof(input), stdin) == NULL) {
@@ -2325,11 +2080,6 @@ int main() {
             continue;
         }
         else if (scelta == 3) {
-            operazioni_algebriche();
-            attendi_cicli_clock_equivalenti_a_secondi(3.0);
-            continue;
-        }
-        else if (scelta == 4) {
             char bin[33];
             char risposta[3];
             printf("Inserire dati manualmente? (S/N): ");
@@ -2386,7 +2136,7 @@ int main() {
             pulire_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
         }
-        else if (scelta == 5) {
+        else if (scelta == 4) {
             char risposta[3];
             int dec;
             printf("Inserire dati manualmente? (S/N): ");
@@ -2442,27 +2192,16 @@ int main() {
             pulire_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
         }
-        else if (scelta == 6) {
+        else if (scelta == 5) {
             ALU32();
             pulire_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
-        else if (scelta == 7) {
+        else if (scelta == 6) {
             attendi_cicli_clock_equivalenti_a_secondi(2.0);
             ALU32();
             pulire_buffer();
-            attendi_cicli_clock_equivalenti_a_secondi(3.0);
-            continue;
-        }
-        else if (scelta == 8) {
-            stampa_memoria();
-            stato_memoria();
-            attendi_cicli_clock_equivalenti_a_secondi(3.0);
-            continue;
-        }
-        else if (scelta == 9) {
-            misura_ciclo_clock();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
