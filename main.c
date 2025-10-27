@@ -503,9 +503,9 @@ void ALU32() {
     }
 
     printf("\n");
-    printf("╔══════════════════════════════════════════════╗\n");
-    printf("║           RISULTATI ALU 32 bit               ║\n");
-    printf("╚══════════════════════════════════════════════╝\n");
+    printf("╔═════════════════════════════════════════════╗\n");
+    printf("║           RISULTATI ALU 32bit               ║\n");
+    printf("╚═════════════════════════════════════════════╝\n");
     printf("- Risultato      = %u\n", result);
 
     FILE *file_out = fopen("risultati_alu32.txt", "w");
