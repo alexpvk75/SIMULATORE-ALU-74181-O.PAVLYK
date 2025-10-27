@@ -1651,20 +1651,20 @@ void simula_alu_74181() {
     scelta[0] = toupper(scelta[0]);
 
     if (scelta[0] == 'S') {
-        if (!leggi_bit_input_74181("Cn", &Cn)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("M", &M)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("A0", &A0)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("B0", &B0)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("A1", &A1)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("B1", &B1)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("A2", &A2)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("B2", &B2)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("A3", &A3)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("B3", &B3)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("S0", &S0)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("S1", &S1)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("S2", &S2)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_74181("S3", &S3)) input_valido = 0;
+        if (porta_not(leggi_bit_input_74181("Cn", &Cn))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("M", &M)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("A0", &A0)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("B0", &B0)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("A1", &A1)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("B1", &B1)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("A2", &A2)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("B2", &B2)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("A3", &A3)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("B3", &B3)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("S0", &S0)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("S1", &S1)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("S2", &S2)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_74181("S3", &S3)))) input_valido = 0;
     } else {
         FILE *file = fopen("input_alu.txt", "r");
         if (!file) {
