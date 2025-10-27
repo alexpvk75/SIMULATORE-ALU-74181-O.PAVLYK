@@ -2234,6 +2234,10 @@ void misura_ciclo_clock() {
     }
     printf("\nSimulazione completata.\n");
 }
+void clear_input_buffer(void) {
+    int c;
+    while (porta_and(porta_not((c = getchar()) == '\n'),porta_not(c == EOF)));
+}
 
 int main() {
     int scelta;
@@ -2269,10 +2273,10 @@ int main() {
         printf("║    1. Operazioni Logiche (ALU 74181 - Singolo)             ║\n");
         printf("║    2. Operazioni Logiche (ALU 74181 - Singolo con clock)   ║\n");
         printf("║    3. Operazioni Algebriche                                ║\n");
-        printf("║    4. Convertitore Binario → Decimale                      ║\n");
-        printf("║    5. Convertitore Decimale → Binario                      ║\n");
-        printf("║    6. ALU in Modalità PIPO (32 bit - 8x74181)              ║\n");
-        printf("║    7. ALU in Modalità PIPO (32 bit - 8x74181 con clock)    ║\n");
+        printf("║    4[3]. Convertitore Binario → Decimale                      ║\n");
+        printf("║    5[4]. Convertitore Decimale → Binario                      ║\n");
+        printf("║    6[5]. ALU in Modalità PIPO (32 bit - 8x74181)              ║\n");
+        printf("║    7[6]. ALU in Modalità PIPO (32 bit - 8x74181 con clock)    ║\n");
         printf("║    8. Visualizza Memoria                                   ║\n");
         printf("║    9. Calcolo del Clock                                    ║\n");
         printf("║    0. Esci                                                 ║\n");
@@ -2292,7 +2296,7 @@ int main() {
                 break;
             }
         }
-        if (!isValid) {
+        if (porta_not(isValid)) {
             printf("\n╔════════════════════════════════╗\n");
             printf("║             ERRORE             ║\n");
             printf("╠════════════════════════════════╣\n");
@@ -2300,6 +2304,7 @@ int main() {
             printf("║   Inserisci un numero valido   ║\n");
             printf("║                                ║\n");
             printf("╚════════════════════════════════╝\n");
+            attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         scelta = atoi(input);
@@ -2309,8 +2314,7 @@ int main() {
         }
         else if (scelta == 1) {
             simula_alu_74181();
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF);
+            clear_input_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
