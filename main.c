@@ -28,7 +28,11 @@ static int leggi_bit_input_32(const char* nome, int* var);
 void ritardo_ns(long nanosecondi) {
 #if SISTEMA_WINDOWS
     long ms = nanosecondi / 1000000L;
-    if (ms <= 0 && nanosecondi > 0) ms = 1; 
+    if (ms <= 0) {
+        if (nanosecondi > 0) {
+            ms = 1; 
+        }
+    }
     Sleep((DWORD)ms);
 #else
     struct timespec inizio, attuale;
