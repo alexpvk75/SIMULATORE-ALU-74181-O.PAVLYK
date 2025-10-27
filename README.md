@@ -10,13 +10,12 @@ Il progetto qui presentato è molto più di una semplice emulazione: rappresenta
 
 Il simulatore offre una serie di funzionalità avanzate per lo studio e la sperimentazione:
 
-* **Simulazione completa** del chip 74181 a **4 bit**.
-* **Estensione a 32 bit** tramite architettura a cascata (come nelle CPU reali).
-* Implementazione di registri **PIPO (Parallel-In/Parallel-Out)** con flip-flop SR.
-* **Rilevamento automatico della CPU host** e stima della frequenza di clock per simulare i cicli di clock.
-* Inclusione di una **Calcolatrice Scientifica** con parser di espressioni.
-* Sistema di **salvataggio persistente** (RAM e file).
-* **Compatibilità multipiattaforma:** Progettato per essere eseguito su Windows, Linux, e macOS.
+* **Simulazione completa** del chip 74181 a **4 bit**
+* **Estensione a 32 bit** tramite architettura a cascata (come nelle CPU reali)
+* Implementazione di registri **PIPO (Parallel-In/Parallel-Out)** con flip-flop SR
+* **Rilevamento automatico della CPU host** e stima della frequenza di clock per simulare i cicli di clock
+* Sistema di **salvataggio persistente** (RAM e file)
+* **Compatibilità multipiattaforma:** Progettato per essere eseguito su Windows, Linux, e macOS
 
 ***
 
@@ -32,6 +31,6 @@ Questo strumento è stato pensato per essere di supporto in diversi contesti:
 ## 👥 Autori e Licenza
 
 Questo è un progetto open-source sviluppato in collaborazione.
-* **Autori**:  Leonardo Galli, Oleksandr Pavlyk, Davide Ning Yu, Zheming Feng, Danilo Ambrogio Brusa, Bohan Yang
+* **Autori**:  Leonardo Galli, Oleksandr Pavlyk, Davide Ning Yu, Zheming Feng
 * **Licenza**: [GNU General Public License v3.0 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.html) |
 * **Ultimo Aggiornamento**: 25 ottobre 2025
