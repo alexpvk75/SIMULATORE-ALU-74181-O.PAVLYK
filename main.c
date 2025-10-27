@@ -251,9 +251,9 @@ void simula_alu_74181() {
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("S3", &S3)))) input_valido = 0;
     } else {
         FILE *file = fopen("input_alu.txt", "r");
-        if (!file) {
+        if (file == NULL) {
             file = fopen("input_alu.txt", "w");
-            if (!file) {
+            if (file == NULL) {
                 printf("ERRORE: Impossibile creare il file input_alu.txt\n");
                 input_valido = 0;
             } else {
@@ -280,7 +280,7 @@ void simula_alu_74181() {
             #define LEGGI_BIT_FILE(var, nome) do { \
                 char *result_fgets_macro; \
                 result_fgets_macro = fgets(line, sizeof(line), file); \
-                if (result_fgets_macro == 0) { \
+                if (result_fgets_macro == NULL) { \
                     printf("ERRORE: Formato file incompleto (%s)\n", nome); \
                     input_valido = 0; \
                 } \
@@ -416,9 +416,9 @@ void ALU32() {
         if (porta_and(input_valido, porta_not(leggi_bit_input_32("S3", &S[3])))) input_valido = 0;
     } else {
         FILE *file = fopen("input_alu32.txt", "r");
-        if (!file) {
+        if (file == NULL) {
             file = fopen("input_alu32.txt", "w");
-            if (!file) {
+            if (file == NULL) {
                 printf("ERRORE: Impossibile creare il file input_alu32.txt\n");
                 input_valido = 0;
             } else {
@@ -438,44 +438,44 @@ void ALU32() {
             char line[100];
 
             #define LEGGI_DA_FILE(var, nome, is_unsigned) do { \
-                if (!fgets(line, sizeof(line), file)) { \
-                    printf("ERRORE: Formato file incompleto (%s)\n", nome); \
-                    input_valido = 0; \
-                } else { \
-                    if (is_unsigned) { \
-                        unsigned int tmp_u; \
-                        if (sscanf(line, "%*[^<]<%u>", &tmp_u) != 1) { \
-                            printf("ERRORE: Valore non valido in %s\n", nome); \
-                            input_valido = 0; \
-                        } else { \
-                            *(var) = tmp_u; \
-                        } \
-                    } else { \
-                        int tmp_i; \
-                        if (sscanf(line, "%*[^<]<%d>", &tmp_i) != 1) { \
-                            printf("ERRORE: Valore non valido in %s\n", nome); \
-                            input_valido = 0; \
-                        } \
-                        if (input_valido == 1) { \
-                            if (tmp_i != 0) { \
-                                if (tmp_i != 1) { \
-                                    printf("╔════════════════════════════════╗\n"); \
-                                    printf("║            ERRORE              ║\n"); \
-                                    printf("╠════════════════════════════════╣\n"); \
-                                    printf("║                                ║\n"); \
-                                    printf("║   %s deve essere 0 o 1      ║\n", nome); \
-                                    printf("║                                ║\n"); \
-                                    printf("╚════════════════════════════════╝\n"); \
-                                    input_valido = 0; \
-                                } \
-                            } \
-                            if (input_valido == 1) { \
-                                *(var) = tmp_i; \
-                            } \
-                        } 
-                    } \
-                } \
-            } while(0)
+                if (fgets(line, sizeof(line), file) == NULL) { \
+                     printf("ERRORE: Formato file incompleto (%s)\n", nome); \
+                     input_valido = 0; \
+                 } else { \
+                     if (is_unsigned) { \
+                         unsigned int tmp_u; \
+                         if (sscanf(line, "%*[^<]<%u>", &tmp_u) != 1) { \
+                             printf("ERRORE: Valore non valido in %s\n", nome); \
+                             input_valido = 0; \
+                         } else { \
+                             *(var) = tmp_u; \
+                         } \
+                     } else { \
+                         int tmp_i; \
+                         if (sscanf(line, "%*[^<]<%d>", &tmp_i) != 1) { \
+                             printf("ERRORE: Valore non valido in %s\n", nome); \
+                             input_valido = 0; \
+                         } \
+                         if (input_valido == 1) { \
+                             if (tmp_i != 0) { \
+                                 if (tmp_i != 1) { \
+                                     printf("╔════════════════════════════════╗\n"); \
+                                     printf("║            ERRORE              ║\n"); \
+                                     printf("╠════════════════════════════════╣\n"); \
+                                     printf("║                                ║\n"); \
+                                     printf("║   %s deve essere 0 o 1      ║\n", nome); \
+                                     printf("║                                ║\n"); \
+                                     printf("╚════════════════════════════════╝\n"); \
+                                     input_valido = 0; \
+                                 } \
+                             } \
+                             if (input_valido == 1) { \
+                                 *(var) = tmp_i; \
+                             } \
+                         } \
+                     } \
+                 } \
+             } while(0)
 
             LEGGI_DA_FILE(&operandoA, "Operando A", 1);
             if (input_valido) LEGGI_DA_FILE(&operandoB, "Operando B", 1);
@@ -591,12 +591,18 @@ int main() {
             printf("Errore di input.\n");
             continue;
         }
-        if (input[0] == '\n' || input[0] == '\0') {
+        if (input[0] == '\n') {
+            continue;
+        }
+        if (input[0] == '\0') {
             continue;
         }
         int isValid = 1;
-        for (int i = 0; input[i] != '\0' && input[i] != '\n'; i++) {
-            if (!isdigit(input[i])) {
+        for (int i = 0; input[i] != '\0'; i++) {
+            if (input[i] == '\n') {
+                break; 
+            }
+            if (isdigit((unsigned char)input[i]) == 0) {
                 isValid = 0;
                 break;
             }
@@ -647,9 +653,9 @@ int main() {
                 }
             } else {
                 FILE *file = fopen("input_bin.txt", "r");
-                if (!file) {
+                if (file == NULL) {
                     file = fopen("input_bin.txt", "w");
-                    if (!file) {
+                    if (file == NULL) {
                         printf("ERRORE: Impossibile creare il file\n");
                         continue;
                     } else {
@@ -701,9 +707,9 @@ int main() {
                 continue;
             } else {
                 FILE *file = fopen("input_dec.txt", "r");
-                if (!file) {
+                if (file == NULL) {
                     file = fopen("input_dec.txt", "w");
-                    if (!file) {
+                    if (file == NULL) {
                         printf("ERRORE: Impossibile creare il file\n");
                         pulire_buffer();
                         continue;
@@ -758,6 +764,7 @@ int main() {
         }
         else {
             printf("Scelta non valida!\n");
+            attendi_secondi(3.0);
             continue;
         }
     }
