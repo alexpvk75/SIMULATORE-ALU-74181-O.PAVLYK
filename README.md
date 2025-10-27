@@ -1,4 +1,4 @@
-# SIMULATORE ALU 74181 — Un Viaggio nel Cuore dell'Architettura Digitale
+# SIMULATORE ALU 74181
 
 Questo simulatore riproduce fedelmente il comportamento del chip **74181**, una delle prime ALU (Arithmetic Logic Unit) integrate, progettata negli anni '70 da Texas Instruments. È considerata una pietra miliare nella storia dell'informatica, poiché ha permesso la costruzione di CPU più complesse e modulari.
 
