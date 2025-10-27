@@ -18,18 +18,15 @@ gcc main.c -o simulatore
 4. All'avvio, ti verrà presentato il Menu Principale. Per selezionare un'opzione, digita il numero corrispondente e premi Invio.
 ```
 ============================
-MENU PRINCIPALE
+SIMULATORE ALU 74181
 ============================
-[1] Operazioni Logiche (ALU 74181 - Singolo)
-[2] Operazioni Logiche (ALU 74181 - Singolo con clock)
-[3] Operazioni Algebriche   
-[4] Convertitore Binario → Decimale 
-[5] Convertitore Decimale → Binario 
-[6] ALU in Modalità PIPO (32 bit - 8x74181)
-[7] ALU in Modalità PIPO (32 bit - 8x74181 con clock)
-[8] Visualizza Memoria   
-[9] Calcolo del Clock  
 [0] Esci
+[1] ALU 74181 a 4 bit
+[2] ALU 74181 a 4 bit (con clock) 
+[3] Convertitore Binario → Decimale 
+[4] Convertitore Decimale → Binario 
+[5] ALU a 32 bit - 8x74181
+[6] ALU a 32 bit - 8x74181 (con clock)
 ```
 
 ### Descrizione delle Funzioni del Simulatore
@@ -38,30 +35,29 @@ Il simulatore offre un'insieme di strumenti avanzati per l'analisi e calcoli log
 
 | Opzione | Nome della Funzione | Descrizione |
 |---------|---------------------|--------------------------|
-| 1 | Operazioni Logiche (ALU 74181 - Singolo) | Esegue la simulazione di un singolo chip ALU 74181. L'utente deve fornire manualmente i due operandi A e B (a 4 bit) e tutti i segnali di controllo (Cn, M, S0-S3) per definire l'operazione logica o aritmetica da eseguire |
-| 2 | Operazioni Logiche (ALU 74181 - Singolo con clock) | Esegue la stessa simulazione a 4 bit dell'opzione 1, ma introduce un ritardo fisso per simulare il tempo di elaborazione del circuito, utile per studi sul timing del sistema |
-| 3 | Operazioni Algebriche | Permette di usare il programma come una Calcolatrice Avanzata. Puoi inserire liste di numeri per Somma, Sottrazione, Moltiplicazione o, in modo più semplice, digitare un'intera Espressione Matematica (es. (10 + 5) * 2) per ottenere il risultato |
-| 4 | Convertitore Binario → Decimale | Converte un numero scritto in codice binario (composto solo da 0 e 1, come 1101) nel suo equivalente nel sistema numerico standard |
-| 5 | Convertitore Decimale → Binario | Converte un numero standard (decimale, es. 25) nel suo equivalente in codice binario (es. 11001) |
-| 6 | ALU in Modalità PIPO (32 bit - 8x74181) | Simula una catena di 8 chip 74181 interconnessi per creare un'unità logica e aritmetica più potente, capace di eseguire operazioni su numeri più grandi (32 bit). Richiede input binari a 32 bit e segnali di controllo |
-| 7 | ALU in Modalità PIPO (32 bit - 8x74181 con clock) | Esegue la stessa simulazione a 32 bit dell'opzione 6, ma con un ritardo di tempo fisso |
-| 8 | Visualizza Memoria | Mostra lo storico dei risultati (output) salvati dal programma dopo ogni operazione di calcolo (algebraica o ALU). Funziona come un registro delle operazioni recenti |
-| 9 | Calcolo del Clock | Misura il tempo effettivo di un ciclo di clock del processore (CPU) del computer su cui è in esecuzione il simulatore. Questo è utilizzato per calibrare e rendere più realistiche le simulazioni temporizzate (come opzioni 2 e 7]) |
 | 0 | Esci | Termina l'esecuzione del programma e chiude l'interfaccia a riga di comando |
+| 1 | ALU 74181 a 4 bit | Esegue la simulazione di un singolo chip ALU 74181. L'utente deve fornire manualmente i due operandi A e B (a 4 bit) e tutti i segnali di controllo (Cn, M, S0-S3) per definire l'operazione logica o aritmetica da eseguire |
+| 2 | ALU 74181 a 4 bit (con clock) | Esegue la stessa simulazione a 4 bit dell'opzione 1, ma introduce un ritardo fisso per simulare il tempo di elaborazione del circuito, utile per studi sul timing del sistema |
+| 3 | Convertitore Binario → Decimale | Converte un numero scritto in codice binario (composto solo da 0 e 1, come 1101) nel suo equivalente nel sistema numerico standard |
+| 4 | Convertitore Decimale → Binario | Converte un numero standard (decimale, es. 25) nel suo equivalente in codice binario (es. 11001) |
+| 5 | ALU a 32 bit - 8x74181 | Simula una catena di 8 chip 74181 interconnessi per creare un'unità logica e aritmetica più potente, capace di eseguire operazioni su numeri più grandi (32 bit). Richiede input binari a 32 bit e segnali di controllo |
+| 6 | ALU a 32 bit - 8x74181 (con clock) | Esegue la stessa simulazione a 32 bit dell'opzione 5, ma con un ritardo di tempo fisso |
 
 ### Istruzioni Dettagliate per Opzione
 
 ##### 1. Operazioni Logiche (ALU 74181 - Singolo)
 
-**Passo 1: Selezione della Modalità di Input**
+**Modalità di Input**
 Dopo aver selezionato l'opzione [1], il programma richiederà la modalità di inserimento dei dati:
 ```Inserire dati manualmente? (S/N):```
 Rispondere con la lettera S (Sì) per l'inserimento diretto da tastiera, oppure con N (No) per la lettura dei dati da un file predefinito. La scelta non è sensibile alla distinzione tra maiuscole e minuscole.
+
 **Sezione A: Inserimento Manuale (S)**
+
 L'utente deve fornire il valore 0 o 1 per ciascuna delle seguenti variabili, nell'ordine in cui vengono richieste dal programma:
 - Cn - **Segnale di Carry-in**: Il bit di riporto (o prestito) in ingresso al circuito. Utilizzato principalmente nelle operazioni aritmetiche
 - M - **Selettore di Modalità**: Determina la natura dell'operazione. 0 per operazioni Aritmetiche (calcoli); 1 per operazioni Logiche (confronti tra bit)
-- S0-S3 - **Selettore di Operazione**: I 4 bit che, in combinazione con M e Cn, definiscono in modo univoco l'operazione da eseguire. [(Tabella di Riferimento Funzioni ALU)](#riferimento-funzioni-alu-opzioni-1-2-6-7)
+- S0-S3 - **Selettore di Operazione**: I 4 bit che, in combinazione con M e Cn, definiscono in modo univoco l'operazione da eseguire. [(Tabella di Riferimento Funzioni ALU)](#riferimento-funzioni-alu-opzioni-1-2-5-6)
 - A0-A3, B0-B3 - **Operandi di Ingresso A e B (4 bit)**: I due numeri binari a 4 cifre su cui verrà eseguita l'operazion
 
 **Output e Risultati**
@@ -98,7 +94,8 @@ dove
 
 Il programma anche generà un file `risultati_alu_74181.txt` con i risultati presentati nel terminale
 
-###### Inserimento tramite un file(`N`)
+**Sezione B: Inserimento tramite un file (N)**
+
 Per utilizzare questa scelta serve il file `file input_alu.txt`. Se non c'è, lo generà il progranna.
 Nel interno del file l'utente deve compilare i seguenti campi:
 ```
@@ -119,7 +116,111 @@ S3: <0>
 ```
 Dopo aver compilato il file, l'utente puo riavviare l'operazione sceglienedo Opzione 1 e inserimento tramite file (`N`), e i risultati saranno presentati sia nel menu, sia nel file `risultati_alu_74181.txt`
 
-### Riferimento Funzioni ALU (Opzioni 1, 2, 6, 7)
+### 2. ALU 74181 a 4 bit (con clock)
+Questa opzione è identica all'opzione `[1] ALU 74181 a 4 bit` per quanto riguarda l'input dei dati (manuale o da file) e l'output dei risultati.
+
+Funzione Clock: L'unica differenza è l'introduzione di un ritardo fisso (delay) per simulare l'intervallo di tempo necessario al circuito logico per stabilizzare il risultato. Questo è utile per la verifica teorica del timing e della propagazione del segnale. Dopo il calcolo e prima di mostrare i risultati, verrà inserita una pausa (ritardo).
+
+### 3. Convertitore Binario → Decimale
+Questa funzione converte un numero binario in notazione decimale standard.
+
+**Input Richiesto:**
+1. Modalità di Input: Simile all'opzione [1], il programma chiederà se si desidera inserire i dati manualmente (S) 
+```
+>> Inserisci un numero binario: 
+```
+o leggerli da un file `input_bin.txt`(N)
+```
+Numero Binario: <0>
+```
+2. Valore Binario: L'utente deve inserire una sequenza di cifre composta solo da 0 e 1
+
+**Output e Risultati:**
+Il programma eseguirà la conversione tramite la funzione BIN_DEC_DECODER  e visualizzerà il risultato decimale. Il risultato viene anche salvato nel file `risultati_dec.txt`
+```
+╔═════════════════════════════════════════════╗
+║          RISULTATI CONVERTITORE             ║
+╚═════════════════════════════════════════════╝
+Risultato      = <...>
+```
+
+### 4. Convertitore Decimale → Binario
+Questa funzione converte un numero decimale in notazione binaria.
+
+**Input Richiesto:**
+1. Modalità di Input: Simile all'opzione [1], il programma chiederà se si desidera inserire i dati manualmente (S) 
+```
+>> Inserisci un numero decimale:  
+```
+o leggerli da un file `input_dec.txt` (N).
+```
+Numero Decimale: <0>
+```
+2. Valore Decimale: L'utente deve inserire un numero intero positivo.
+
+**Output e Risultati:**
+Il programma eseguirà la conversione tramite la funzione DEC_BIN_CODER  e visualizzerà il risultato binario. Il risultato viene anche salvato nel file `risultati_bin.txt`
+```
+╔═════════════════════════════════════════════╗
+║          RISULTATI CONVERTITORE             ║
+╚═════════════════════════════════════════════╝
+Risultato      = <...>
+```
+
+### 5. e 6. ALU a 32 bit (8x74181)
+Queste opzioni simulano l'interconnessione di otto chip 74181 per creare un'unità logica e aritmetica a 32 bit, capace di gestire operandi più grandi. L'opzione [6] include un ritardo (con clock) come l'opzione [2].
+
+**Input Richiesto:**
+L'interfaccia di input è logicamente la stessa delle opzioni a 4 bit, ma gli operandi A e B sono di 32 bit ciascuno.
+1. Segnali di Controllo (1-bit):
+    - Cn (Carry-in), M (Modalità), S0-S3 (Selettore di Operazione) [(Tabella di Riferimento Funzioni ALU)](#riferimento-funzioni-alu-opzioni-1-2-5-6)
+
+2. Operandi di Ingresso (32-bit):
+    - A0-A31 (Operando A)
+    - B0-B31 (Operando B)
+
+**Modalità di Input:**
+
+- Manuale (S): 
+    1. L'utente inserisce gli operandi A e B in decimale.
+    2. Successivamente, l'utente inserisce i 6 bit di controllo (Cn, M, S0-S3) come valori 0 o 1.
+    ```
+    >> Inserisci il primo operando (numero decimale a 32 bit): 
+    >> Inserisci il secondo operando (numero decimale a 32 bit): 
+    >> Cn:
+    >> M:
+    >> S0:
+    >> S1:
+    >> S2:
+    >> S3:
+    ```
+- Da File (N): 
+    1. Il programma cercherà/genererà un file denominato `input_alu32.txt`
+    ```
+    Operando A: <0>
+    Operando B: <0>
+    Cn: <0>
+    M: <0>
+    S0: <0>
+    S1: <0>
+    S2: <0>
+    S3: <0>
+    ```
+    2. Questo file dovrà contenere i 6 segnali di controllo e i due operandi A e B. I segnali di controllo devono essere specificati come 0 o 1, mentre gli operandi A e B devono essere specificati in formato decimale.
+
+**Output e Risultati:**
+
+Il risultato in uscita F (l'uscita a 32 bit) sarà presentato in formato decimale. Inoltre verra salvato nel file `risultati_alu32.txt`
+
+```
+╔═════════════════════════════════════════════╗
+║           RISULTATI ALU 32bit               ║
+╚═════════════════════════════════════════════╝
+- Risultato      = <...>
+```
+
+
+### Riferimento Funzioni ALU (Opzioni 1, 2, 5, 6)
 La seguente tabella mostra come i segnali di controllo M, Cn e S0-S3 selezionano l'operazione eseguita.
 
 | M | S3 | S2 | S1 | S0 | Cn | Operazione | 
