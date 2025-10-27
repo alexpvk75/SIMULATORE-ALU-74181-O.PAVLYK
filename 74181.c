@@ -1968,8 +1968,7 @@ void ALU32() {
         printf("╚════════════════════════════════╝\n");
     }
 
-    attendi_cicli_clock_equivalenti_a_secondi(2.0);
-}
+    delay(2000);
 int somma(int a, int b) { 
   return a + b; 
 } 
