@@ -1807,21 +1807,21 @@ void ALU32() {
             printf("ERRORE: Input operando A non valido.\n");
             input_valido = 0;
         }
-        if (!input_valido) { return; }
+        if (porta_not(input_valido)) { return; }
 
         printf(">> Inserisci il secondo operando (numero decimale a 32 bit): ");
         if (scanf("%u", &operandoB) != 1) {
             printf("ERRORE: Input operando B non valido.\n");
             input_valido = 0;
         }
-        if (!input_valido) { return; }
+        if (porta_not(input_valido)) { return; }
 
-        if (!leggi_bit_input_32("Cn", &Cn)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_32("M", &M)) input_valido = 0;
-        if (input_valido && !leggi_bit_input_32("S0", &S[0])) input_valido = 0;
-        if (input_valido && !leggi_bit_input_32("S1", &S[1])) input_valido = 0;
-        if (input_valido && !leggi_bit_input_32("S2", &S[2])) input_valido = 0;
-        if (input_valido && !leggi_bit_input_32("S3", &S[3])) input_valido = 0;
+        if (porta_not(leggi_bit_input_32("Cn", &Cn))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_32("M", &M)))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_32("S0", &S[0])))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_32("S1", &S[1])))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_32("S2", &S[2])))) input_valido = 0;
+        if (porta_and(input_valido, porta_not(leggi_bit_input_32("S3", &S[3])))) input_valido = 0;
     } else {
         FILE *file = fopen("input_alu32.txt", "r");
         if (!file) {
@@ -1893,9 +1893,7 @@ void ALU32() {
         }
     }
 
-    if (!input_valido) {
-        return;
-    }
+    if (porta_not(input_valido)) { return; }
 
     int D_A[32], D_B[32], D_F[32];
     for (int i = 0; i < 32; i++) {
