@@ -1,3 +1,6 @@
 
 [OPERAZIONE: SOMMA]
 Risultato: 39.00
+
+[OPERAZIONE: SOMMA]
+Risultato: 39.00

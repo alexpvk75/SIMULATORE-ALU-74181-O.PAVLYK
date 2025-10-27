@@ -1990,7 +1990,10 @@ int divisione(int a, int b) {
   } 
   return a / b; 
 }
-
+void pulire_buffer() {
+    int c;
+    while (porta_and(porta_not((c = getchar()) == '\n'),porta_not(c == EOF)));
+}
 void operazioni_algebriche() {
     while (1) {
         char operazione[30];
@@ -2133,8 +2136,7 @@ void operazioni_algebriche() {
             }
             case 5: {
                 char input[256];
-                int c;
-                while ((c = getchar()) != '\n' && c != EOF);
+                pulire_buffer();
                 printf("\n╔══════════════════════════════════════════════════════╗\n");
                 printf("║               CALCOLO DI ESPRESSIONE                 ║\n");
                 printf("╚══════════════════════════════════════════════════════╝\n");
@@ -2234,10 +2236,7 @@ void misura_ciclo_clock() {
     }
     printf("\nSimulazione completata.\n");
 }
-void pulire_buffer(void) {
-    int c;
-    while (porta_and(porta_not((c = getchar()) == '\n'),porta_not(c == EOF)));
-}
+
 
 int main() {
     int scelta;
@@ -2469,7 +2468,6 @@ int main() {
         }
         else {
             printf("Scelta non valida!\n");
-            pulire_buffer();
             continue;
         }
     }
