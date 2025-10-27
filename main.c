@@ -521,8 +521,6 @@ void ALU32() {
         printf("║                                ║\n");
         printf("╚════════════════════════════════╝\n");
     }
-
-    delay(2000);
 }
 void pulire_buffer() {
     int c;
