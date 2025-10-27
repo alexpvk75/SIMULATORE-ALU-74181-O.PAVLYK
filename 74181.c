@@ -117,42 +117,6 @@ char* DEC_BIN_CODER(int numero) {
   return binario; 
 }
 
-int *memoria = NULL; 
-int capacita_memoria = 10; 
-int indice_memoria = 0;
-void salva_in_memoria(int valore) {
-    if (memoria == NULL) {
-        memoria = malloc(capacita_memoria * sizeof(int));
-        if (!memoria) {
-            printf("ERRORE: impossibile allocare la memoria. Salvataggio saltato.\n");
-            return;
-        }
-    }
-    if (indice_memoria >= capacita_memoria) {
-        capacita_memoria *= 2;
-        int *temp = realloc(memoria, capacita_memoria * sizeof(int));
-        if (!temp) {
-            printf("ERRORE: impossibile espandere la memoria. Salvataggio saltato.\n");
-            capacita_memoria /= 2;
-            return;
-        }
-        memoria = temp;
-        printf("[INFO] Memoria espansa a %d celle.\n", capacita_memoria);
-    }
-    memoria[indice_memoria++] = valore;
-}
-
-void stampa_memoria() { 
-  printf("Contenuto della memoria:\n"); 
-  for (int i = 0; i < indice_memoria; i++) { 
-    printf("Memoria[%d] = %-3d\n", i, memoria[i]); 
-  } 
-}
-void stato_memoria() { 
-  printf("Stato memoria:\n"); 
-  printf("- Totale allocato: %d celle\n", capacita_memoria); 
-  printf("- Occupato: %d celle\n", indice_memoria); 
-} 
 int porta_not(int a) { 
   return 1 - a; 
 } 
@@ -353,8 +317,6 @@ void simula_alu_74181() {
     printf("║                                             ║\n");
     printf("╚═════════════════════════════════════════════╝\n");
 
-    salva_in_memoria(Cn_piu_4);
-
     FILE *file_out = fopen("risultati_alu_74181.txt", "w");
     if (file_out) {
         fprintf(file_out, "╔═════════════════════════════════════════════╗\n");
@@ -541,7 +503,6 @@ void ALU32() {
     printf("║           RISULTATI ALU 32bit               ║\n");
     printf("╚═════════════════════════════════════════════╝\n");
     printf("- Risultato      = %u\n", result);
-    salva_in_memoria((int)result);
 
     FILE *file_out = fopen("risultati_alu32.txt", "w");
     if (file_out) {
@@ -761,11 +722,5 @@ int main() {
             continue;
         }
     }
-    if (memoria != NULL) {
-        free(memoria);
-        memoria = NULL;
-        printf("[INFO] Memoria liberata.\n");
-    }
-
     return 0;
 }
