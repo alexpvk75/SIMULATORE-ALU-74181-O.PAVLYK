@@ -2327,7 +2327,6 @@ int main() {
         }
         else if (scelta == 3) {
             operazioni_algebriche();
-            pulire_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
