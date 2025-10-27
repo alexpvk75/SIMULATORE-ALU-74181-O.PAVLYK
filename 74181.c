@@ -2321,15 +2321,13 @@ int main() {
         else if (scelta == 2) {
             attendi_cicli_clock_equivalenti_a_secondi(2.0);
             simula_alu_74181();
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF);
+            clear_input_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         else if (scelta == 3) {
             operazioni_algebriche();
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF);
+            clear_input_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
