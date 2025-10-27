@@ -456,6 +456,7 @@ void ALU32() {
     for (int i = 0; i < 32; i++) {
         D_A[i] = (operandoA >> i) & 1;
         D_B[i] = (operandoB >> i) & 1;
+        D_F[i] = 0;
     }
 
     int Q_A[32] = {0}, Q_bar_A[32] = {0}, prev_CLK_A[32] = {0};
@@ -474,7 +475,6 @@ void ALU32() {
         reg_PIPO32(D_B, S_reg, R_reg, CLK, prev_CLK_B, Q_B, Q_bar_B);
     }
 
-    unsigned int result = 0;
     int currentCn = Cn;
     int F[4], A_uguale_B, P, Cn_piu_4, G;
     for (int nibble = 0; nibble < 8; nibble++) {
@@ -484,18 +484,22 @@ void ALU32() {
             Bbits[bit] = Q_B[nibble * 4 + bit];
         }
         n_ALU74181(currentCn, M, Abits, Bbits, S, F, &A_uguale_B, &P, &Cn_piu_4, &G);
-        unsigned int nibbleResult = F[0] | (F[1] << 1) | (F[2] << 2) | (F[3] << 3);
-        result |= (nibbleResult << (nibble * 4));
+        for (int bit = 0; bit < 4; bit++) {
+            D_F[nibble * 4 + bit] = F[bit];
+        }
         currentCn = Cn_piu_4;
-    }
-
-    for (int i = 0; i < 32; i++) {
-        D_F[i] = (result >> i) & 1;
     }
 
     for (int i = 0; i < 4; i++) {
         clock_step(&CLK, &prev_CLK, 100);
         reg_PIPO32(D_F, S_reg, R_reg, CLK, prev_CLK_F, Q_F, Q_bar_F);
+    }
+
+    unsigned int result = 0; 
+    for (int i = 0; i < 32; i++) {
+        if (Q_F[i] == 1) { 
+            result |= (1u << i);
+        }
     }
 
     printf("\n");
