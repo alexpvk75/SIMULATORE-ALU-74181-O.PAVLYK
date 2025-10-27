@@ -1732,7 +1732,7 @@ void simula_alu_74181() {
         }
     }
 
-    if (!input_valido) {
+    if (porta_not(input_valido)) {
         return;
     }
 
