@@ -2234,7 +2234,7 @@ void misura_ciclo_clock() {
     }
     printf("\nSimulazione completata.\n");
 }
-void clear_input_buffer(void) {
+void pulire_buffer(void) {
     int c;
     while (porta_and(porta_not((c = getchar()) == '\n'),porta_not(c == EOF)));
 }
@@ -2314,20 +2314,20 @@ int main() {
         }
         else if (scelta == 1) {
             simula_alu_74181();
-            clear_input_buffer();
+            pulire_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         else if (scelta == 2) {
             attendi_cicli_clock_equivalenti_a_secondi(2.0);
             simula_alu_74181();
-            clear_input_buffer();
+            pulire_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         else if (scelta == 3) {
             operazioni_algebriche();
-            clear_input_buffer();
+            pulire_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
@@ -2343,8 +2343,7 @@ int main() {
                 int risultato = BIN_DEC_DECODER(bin);
                 if (risultato != -1) {
                     printf("Risultato (decimale): %d\n", risultato);
-                    int c;
-                    while ((c = getchar()) != '\n' && c != EOF);
+                    pulire_buffer();
                     continue;
                 }
             } else {
@@ -2358,8 +2357,7 @@ int main() {
                         fprintf(file, "Numero Binario: <0>\n");
                         fclose(file);
                         printf("Creato file input_bin.txt. Compilarlo e riavviare.\n");
-                        int c;
-                        while ((c = getchar()) != '\n' && c != EOF);
+                        pulire_buffer();
                         continue;
                     }
                 } else {
@@ -2375,22 +2373,19 @@ int main() {
                                 fprintf(file_out, "╚═════════════════════════════════════════════╝\n");
                                 fprintf(file_out, "Risultato      = %-3d\n", risultato);
                                 fclose(file_out);
-                                int c;
-                                while ((c = getchar()) != '\n' && c != EOF);
+                                pulire_buffer();
                                 continue;
                             }
                         }
                     } else {
                         fclose(file);
                         printf("ERRORE: Formato file incompleto\n");
-                        int c;
-                        while ((c = getchar()) != '\n' && c != EOF);
+                        pulire_buffer();
                         continue;
                     }
                 }
             }
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF);
+            pulire_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
         }
         else if (scelta == 5) {
@@ -2403,8 +2398,7 @@ int main() {
                 printf(">> Inserisci un numero decimale: ");
                 scanf("%d", &dec);
                 printf("Risultato (binario): %s\n", DEC_BIN_CODER(dec));
-                int c;
-                while ((c = getchar()) != '\n' && c != EOF);
+                pulire_buffer();
                 continue;
             } else {
                 FILE *file = fopen("input_dec.txt", "r");
@@ -2412,15 +2406,13 @@ int main() {
                     file = fopen("input_dec.txt", "w");
                     if (!file) {
                         printf("ERRORE: Impossibile creare il file\n");
-                        int c;
-                        while ((c = getchar()) != '\n' && c != EOF);
+                        pulire_buffer();
                         continue;
                     } else {
                         fprintf(file, "Numero Decimale: <0>\n");
                         fclose(file);
                         printf("Creato file input_dec.txt. Compilarlo e riavviare.\n");
-                        int c;
-                        while ((c = getchar()) != '\n' && c != EOF);
+                        pulire_buffer();
                         continue;
                     }
                 } else {
@@ -2437,36 +2429,31 @@ int main() {
                                 fprintf(file_out, "╚═════════════════════════════════════════════╝\n");
                                 fprintf(file_out, "Risultato      = %-16s\n", DEC_BIN_CODER(dec));
                                 fclose(file_out);
-                                int c;
-                                while ((c = getchar()) != '\n' && c != EOF);
+                                pulire_buffer();
                                 continue;
                             }
                         }
                     } else {
                         fclose(file);
                         printf("ERRORE: Formato file incompleto\n");
-                        int c;
-                        while ((c = getchar()) != '\n' && c != EOF);
+                        pulire_buffer();
                         continue;
                     }
                 }
             }
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF);
+            pulire_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
         }
         else if (scelta == 6) {
             ALU32();
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF);
+            pulire_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
         else if (scelta == 7) {
             attendi_cicli_clock_equivalenti_a_secondi(2.0);
             ALU32();
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF);
+            pulire_buffer();
             attendi_cicli_clock_equivalenti_a_secondi(3.0);
             continue;
         }
@@ -2483,8 +2470,7 @@ int main() {
         }
         else {
             printf("Scelta non valida!\n");
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF);
+            pulire_buffer();
             continue;
         }
     }
