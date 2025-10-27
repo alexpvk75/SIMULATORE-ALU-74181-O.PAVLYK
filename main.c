@@ -186,8 +186,21 @@ void n_ALU74181(int Cn, int M, int A[4], int B[4], int S[4], int F[4], int *A_ug
 }
 static int leggi_bit_input_74181(const char* nome, int* var) {
     int input;
+    int lettura_riuscita;
+    int input_valido = 1;
     printf(">> %s: ", nome);
-    if (scanf("%d", &input) != 1 || (input != 0 && input != 1)) {
+    lettura_riuscita = scanf("%d", &input);
+    if (lettura_riuscita != 1) {
+        input_valido = 0;
+    }
+    if (input_valido == 1) { 
+        if (input != 0) {
+            if (input != 1) {
+                input_valido = 0;
+            }
+        }
+    }
+    if (porta_not(input_valido)) {
         printf("╔════════════════════════════════╗\n");
         printf("║            ERRORE              ║\n");
         printf("╠════════════════════════════════╣\n");
@@ -195,6 +208,7 @@ static int leggi_bit_input_74181(const char* nome, int* var) {
         printf("║   %s deve essere 0 o 1      ║\n", nome);
         printf("║                                ║\n");
         printf("╚════════════════════════════════╝\n");
+        pulire_buffer();
         return 0;
     }
     *var = input;
