@@ -25,6 +25,8 @@
 static int leggi_bit_input_74181(const char* nome, int* var);
 static int leggi_bit_input_32(const char* nome, int* var);
 
+
+
 void ritardo_ns(long nanosecondi) {
 #if SISTEMA_WINDOWS
     long ms = nanosecondi / 1000000L;
@@ -174,6 +176,11 @@ int porta_exor_5(int a, int b, int c, int d, int e) {
   return porta_exor(tmp, e); 
 }
 
+void pulire_buffer() {
+    int c;
+    while (porta_and(porta_not((c = getchar()) == '\n'),porta_not(c == EOF)));
+}
+
 void n_ALU74181(int Cn, int M, int A[4], int B[4], int S[4], int F[4], int *A_uguale_B, int *P, int *Cn_piu_4, int *G) { 
   F[0] = porta_exor(porta_not(porta_and(Cn, porta_not(M))), porta_and(porta_not(porta_not(porta_or_3(A[0], porta_and(B[0], S[0]), porta_and(S[1], porta_not(B[0]))))), porta_not(porta_or(porta_and_3(porta_not(B[0]), S[2], A[0]), porta_and_3(A[0], B[0], S[3]))))); 
   F[1] = porta_exor(porta_not(porta_or(porta_and(porta_not(M), porta_not(porta_or_3(A[0], porta_and(B[0], S[0]), porta_and(S[1], porta_not(B[0]))))), porta_and_3(porta_not(M), porta_not(porta_or(porta_and_3(porta_not(B[0]), S[2], A[0]), porta_and_3(A[0], B[0], S[3]))), Cn))), porta_and(porta_not(porta_not(porta_or_3(A[1], porta_and(B[1], S[0]), porta_and(S[1], porta_not(B[1]))))), porta_not(porta_or(porta_and_3(porta_not(B[1]), S[2], A[1]), porta_and_3(A[1], S[3], B[1]))))); 
@@ -271,21 +278,31 @@ void simula_alu_74181() {
         } else {
             char line[100];
             #define LEGGI_BIT_FILE(var, nome) do { \
-                if (!fgets(line, sizeof(line), file)) { \
+                char *result_fgets_macro; \
+                result_fgets_macro = fgets(line, sizeof(line), file); \
+                if (result_fgets_macro == 0) { \
                     printf("ERRORE: Formato file incompleto (%s)\n", nome); \
                     input_valido = 0; \
-                } else if (sscanf(line, "%*[^<]<%d>", &(var)) != 1) { \
-                    printf("ERRORE: Valore non valido in %s\n", nome); \
-                    input_valido = 0; \
-                } else if ((var) != 0 && (var) != 1) { \
-                    printf("╔════════════════════════════════╗\n"); \
-                    printf("║            ERRORE              ║\n"); \
-                    printf("╠════════════════════════════════╣\n"); \
-                    printf("║                                ║\n"); \
-                    printf("║   %s deve essere 0 o 1      ║\n", nome); \
-                    printf("║                                ║\n"); \
-                    printf("╚════════════════════════════════╝\n"); \
-                    input_valido = 0; \
+                } \
+                if (input_valido == 1) { \
+                    if (sscanf(line, "%*[^<]<%d>", &(var)) != 1) { \
+                        printf("ERRORE: Valore non valido in %s\n", nome); \
+                        input_valido = 0; \
+                    } \
+                } \
+                if (input_valido == 1) { \
+                    if ((var) != 0) { \
+                        if ((var) != 1) { \
+                            printf("╔════════════════════════════════╗\n"); \
+                            printf("║            ERRORE              ║\n"); \
+                            printf("╠════════════════════════════════╣\n"); \
+                            printf("║                                ║\n"); \
+                            printf("║   %s deve essere 0 o 1      ║\n", nome); \
+                            printf("║                                ║\n"); \
+                            printf("╚════════════════════════════════╝\n"); \
+                            input_valido = 0; \
+                        } \
+                    } \
                 } \
             } while(0)
 
@@ -438,18 +455,24 @@ void ALU32() {
                         if (sscanf(line, "%*[^<]<%d>", &tmp_i) != 1) { \
                             printf("ERRORE: Valore non valido in %s\n", nome); \
                             input_valido = 0; \
-                        } else if (tmp_i != 0 && tmp_i != 1) { \
-                            printf("╔════════════════════════════════╗\n"); \
-                            printf("║            ERRORE              ║\n"); \
-                            printf("╠════════════════════════════════╣\n"); \
-                            printf("║                                ║\n"); \
-                            printf("║   %s deve essere 0 o 1      ║\n", nome); \
-                            printf("║                                ║\n"); \
-                            printf("╚════════════════════════════════╝\n"); \
-                            input_valido = 0; \
-                        } else { \
-                            *(var) = tmp_i; \
                         } \
+                        if (input_valido == 1) { \
+                            if (tmp_i != 0) { \
+                                if (tmp_i != 1) { \
+                                    printf("╔════════════════════════════════╗\n"); \
+                                    printf("║            ERRORE              ║\n"); \
+                                    printf("╠════════════════════════════════╣\n"); \
+                                    printf("║                                ║\n"); \
+                                    printf("║   %s deve essere 0 o 1      ║\n", nome); \
+                                    printf("║                                ║\n"); \
+                                    printf("╚════════════════════════════════╝\n"); \
+                                    input_valido = 0; \
+                                } \
+                            } \
+                            if (input_valido == 1) { \
+                                *(var) = tmp_i; \
+                            } \
+                        } 
                     } \
                 } \
             } while(0)
@@ -543,10 +566,6 @@ void ALU32() {
         printf("║                                ║\n");
         printf("╚════════════════════════════════╝\n");
     }
-}
-void pulire_buffer() {
-    int c;
-    while (porta_and(porta_not((c = getchar()) == '\n'),porta_not(c == EOF)));
 }
 
 
