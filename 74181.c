@@ -1969,6 +1969,7 @@ void ALU32() {
     }
 
     delay(2000);
+}
 int somma(int a, int b) { 
   return a + b; 
 } 
