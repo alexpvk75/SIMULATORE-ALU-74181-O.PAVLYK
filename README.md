@@ -14,7 +14,6 @@ Il simulatore offre una serie di funzionalità avanzate per lo studio e la speri
 * **Estensione a 32 bit** tramite architettura a cascata (come nelle CPU reali)
 * Implementazione di registri **PIPO (Parallel-In/Parallel-Out)** con flip-flop SR
 * **Rilevamento automatico della CPU host** e stima della frequenza di clock per simulare i cicli di clock
-* Sistema di **salvataggio persistente** (RAM e file)
 * **Compatibilità multipiattaforma:** Progettato per essere eseguito su Windows, Linux, e macOS
 
 ***
