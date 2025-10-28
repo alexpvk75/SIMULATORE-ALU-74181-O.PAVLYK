@@ -344,7 +344,7 @@ void simula_alu_74181(int scelta_clock) {
     if (porta_not(input_valido)) {
         return;
     }
-
+    if (scelta_clock - 1) {printf("Elaborazione in corso...\n");};
     int A[4] = {A0, A1, A2, A3};
     int B[4] = {B0, B1, B2, B3};
     int S_arr[4] = {S0, S1, S2, S3};
@@ -399,7 +399,7 @@ void simula_alu_74181(int scelta_clock) {
     attendi_secondi(2.0);
 }
 
-void ALU32() {
+void ALU32(int scelta_clock) {
     unsigned int operandoA = 0, operandoB = 0;
     int Cn = 0, M = 0, S[4] = {0};
     char scelta[3];
@@ -416,6 +416,7 @@ void ALU32() {
             input_valido = 0;
         }
         if (porta_not(input_valido)) { return; }
+        if (scelta_clock - 5) {attendi_secondi(0.5);}
 
         printf(">> Inserisci il secondo operando (numero decimale a 32 bit): ");
         if (scanf("%u", &operandoB) != 1) {
@@ -423,13 +424,20 @@ void ALU32() {
             input_valido = 0;
         }
         if (porta_not(input_valido)) { return; }
+        if (scelta_clock - 5) {attendi_secondi(0.5);}
 
         if (porta_not(leggi_bit_input_32("Cn", &Cn))) input_valido = 0;
+        if (scelta_clock - 5) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_32("M", &M)))) input_valido = 0;
+        if (scelta_clock - 5) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_32("S0", &S[0])))) input_valido = 0;
+        if (scelta_clock - 5) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_32("S1", &S[1])))) input_valido = 0;
+        if (scelta_clock - 5) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_32("S2", &S[2])))) input_valido = 0;
+        if (scelta_clock - 5) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_32("S3", &S[3])))) input_valido = 0;
+        if (scelta_clock - 5) {attendi_secondi(0.5);}
     } else {
         FILE *file = fopen("input_alu32.txt", "r");
         if (file == NULL) {
@@ -447,6 +455,7 @@ void ALU32() {
                 fprintf(file, "S2: <0>\n");
                 fprintf(file, "S3: <0>\n");
                 fclose(file);
+                if (scelta_clock - 5) {attendi_secondi(0.5);}
                 printf("Creato file input_alu32.txt. Compilarlo e riavviare.\n");
                 input_valido = 0;
             }
@@ -508,7 +517,7 @@ void ALU32() {
     }
 
     if (porta_not(input_valido)) { return; }
-
+    if (scelta_clock - 5) {printf("Elaborazione in corso...\n");};
     int D_A[32], D_B[32], D_F[32];
     for (int i = 0; i < 32; i++) {
         D_A[i] = (operandoA >> i) & 1;
@@ -531,6 +540,7 @@ void ALU32() {
         reg_PIPO32(D_A, S_reg, R_reg, CLK, prev_CLK_A, Q_A, Q_bar_A);
         reg_PIPO32(D_B, S_reg, R_reg, CLK, prev_CLK_B, Q_B, Q_bar_B);
     }
+    if (scelta_clock - 5) {attendi_secondi(0.5);}
 
     int currentCn = Cn;
     int F[4], A_uguale_B, P, Cn_piu_4, G;
@@ -546,11 +556,13 @@ void ALU32() {
         }
         currentCn = Cn_piu_4;
     }
+    if (scelta_clock - 5) {attendi_secondi(0.5);}
 
     for (int i = 0; i < 4; i++) {
         clock_step(&CLK, &prev_CLK, 100);
         reg_PIPO32(D_F, S_reg, R_reg, CLK, prev_CLK_F, Q_F, Q_bar_F);
     }
+    if (scelta_clock - 1) {attendi_secondi(0.5);}
 
     unsigned int result = 0; 
     for (int i = 0; i < 32; i++) {
@@ -558,6 +570,7 @@ void ALU32() {
             result |= (1u << i);
         }
     }
+    if (scelta_clock - 5) {attendi_secondi(0.5);}
 
     printf("\n");
     printf("╔═════════════════════════════════════════════╗\n");
@@ -765,14 +778,13 @@ int main() {
             attendi_secondi(3.0);
         }
         else if (scelta == 5) {
-            ALU32();
+            ALU32(scelta);
             pulire_buffer();
             attendi_secondi(3.0);
             continue;
         }
         else if (scelta == 6) {
-            attendi_secondi(2.0);
-            ALU32();
+            ALU32(scelta);
             pulire_buffer();
             attendi_secondi(3.0);
             continue;
