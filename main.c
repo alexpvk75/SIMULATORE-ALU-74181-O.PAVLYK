@@ -225,7 +225,7 @@ static int leggi_bit_input_32(const char* nome, int* var) {
     return leggi_bit_input_74181(nome, var);
 }
 
-void simula_alu_74181() {
+void simula_alu_74181(int scelta_clock) {
     int Cn, M, A0, B0, A1, B1, A2, B2, A3, B3, S0, S1, S2, S3;
     char scelta[3];
     int input_valido = 1;
@@ -236,19 +236,33 @@ void simula_alu_74181() {
 
     if (scelta[0] == 'S') {
         if (porta_not(leggi_bit_input_74181("Cn", &Cn))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("M", &M)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("A0", &A0)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("B0", &B0)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("A1", &A1)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("B1", &B1)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("A2", &A2)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("B2", &B2)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("A3", &A3)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("B3", &B3)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("S0", &S0)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("S1", &S1)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("S2", &S2)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
         if (porta_and(input_valido, porta_not(leggi_bit_input_74181("S3", &S3)))) input_valido = 0;
+        if (scelta_clock - 1) {attendi_secondi(0.5);}
     } else {
         FILE *file = fopen("input_alu.txt", "r");
         if (file == NULL) {
@@ -272,6 +286,7 @@ void simula_alu_74181() {
                 fprintf(file, "S2: <0>\n");
                 fprintf(file, "S3: <0>\n");
                 fclose(file);
+                if (scelta_clock - 1) {attendi_secondi(0.5);}
                 printf("Creato file input_alu.txt. Compilarlo e riavviare.\n");
                 input_valido = 0;
             }
@@ -335,6 +350,7 @@ void simula_alu_74181() {
     int S_arr[4] = {S0, S1, S2, S3};
     int F[4], A_uguale_B, P, Cn_piu_4, G;
     n_ALU74181(Cn, M, A, B, S_arr, F, &A_uguale_B, &P, &Cn_piu_4, &G);
+    if (scelta_clock - 1) {attendi_secondi(0.5);}
 
     printf("\n");
     printf("╔═════════════════════════════════════════════╗\n");
@@ -624,14 +640,13 @@ int main() {
             break;
         }
         else if (scelta == 1) {
-            simula_alu_74181();
+            simula_alu_74181(scelta);
             pulire_buffer();
             attendi_secondi(3.0);
             continue;
         }
         else if (scelta == 2) {
-            attendi_secondi(2.0);
-            simula_alu_74181();
+            simula_alu_74181(scelta);
             pulire_buffer();
             attendi_secondi(3.0);
             continue;
