@@ -1,7 +1,7 @@
 # **Manuale Utente - Simulatore ALU 74181**
 
 ### Descrizione breve
-Questo programma è un Simulatore di Unità Aritmetica e Logica (ALU) 74181. L'ALU è il "cervello" fondamentale di un computer, responsabile di tutte le operazioni matematiche (Aritmetica) e logiche (come AND, OR). Lo strumento è pensato principalmente per scopi didattici e per testare le funzioni logiche del chip 74181.
+Questo programma è un Simulatore di Unità Aritmetica e Logica (ALU) 74181. L'ALU è il "cervello" fondamentale di un computer, responsabile di tutte le operazioni matematiche (Aritmetica) e logiche (come AND, OR, NOT). Lo strumento è pensato principalmente per scopi didattici e per testare le funzioni logiche del chip 74181.
 
 ### Istruzioni di Avvio
 
