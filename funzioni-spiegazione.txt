@@ -45,6 +45,6 @@ Queste funzioni simulano componenti digitali più complessi utilizzando le porte
   - char* DEC_BIN_CODER(int numero) - Simula un Codificatore Decimale-Binario 
 6. Funzioni Principali
   - void n_ALU74181(int Cn, int M, int A[4], int B[4], int S[4], int F[4], int *A_uguale_B, int *P, int *Cn_piu_4, int *G) - Simula un blocco base di ALU 74181 a 4 bit. Esegue 16 operazioni logiche e 16 aritmetiche. Prende 12 ingressi/uscite inclusi i bit di input A, B, il Carry-In Cn, il pin di Modo M, i 4 bit di selezione S0-S3, e i puntatori ai bit di Output F, Carry-Out Cout, Propagate P e Generate G.
-  - void simula_alu_74181() - Funzione wrapper che richiede all'utente gli input per l'ALU 74181 (A, B, S, M, Cn) e ne visualizza il risultato.
-  - void ALU32() - Simula una ALU a 32 bit completa
+  - void simula_alu_74181(int scelta_clock) - Funzione wrapper che richiede all'utente gli input per l'ALU 74181 (A, B, S, M, Cn) e ne visualizza il risultato.
+  - void ALU32(int scelta_clock) - Simula una ALU a 32 bit completa
   - int main() - La funzione principale e punto di ingresso del programma. Gestisce il menu di navigazione (scelta dell'utente), le chiamate alle funzioni di simulazione (Decoder, ALU), e la logica di temporizzazione del clock per mantenere il programma in esecuzione
