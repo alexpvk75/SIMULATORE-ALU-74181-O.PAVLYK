@@ -6,7 +6,7 @@ Il progetto qui presentato è molto più di una semplice emulazione: rappresenta
 
 ***
 
-## ⚙️ Caratteristiche Tecniche
+## Caratteristiche Tecniche
 
 Il simulatore offre una serie di funzionalità avanzate per lo studio e la sperimentazione:
 
@@ -19,7 +19,7 @@ Il simulatore offre una serie di funzionalità avanzate per lo studio e la speri
 
 ***
 
-## 📚 Utilizzo Didattico e Professionale
+## Utilizzo Didattico e Professionale
 
 Questo strumento è stato pensato per essere di supporto in diversi contesti:
 
@@ -28,9 +28,13 @@ Questo strumento è stato pensato per essere di supporto in diversi contesti:
 * Strumento avanzato per makers e appassionati di elettronica digitale.
 
 
-## 👥 Autori e Licenza
+## Autori e Licenza
 
 Questo è un progetto open-source sviluppato in collaborazione.
-* **Autori**:  Leonardo Galli, Oleksandr Pavlyk, Davide Ning Yu, Zheming Feng
+* **Autori**:  Leonardo Galli, Oleksandr Pavlyk, Davide Ning Yu, Zheming Feng, Danilo Ambrogio Brusa, Bohan Yang
 * **Licenza**: [GNU General Public License v3.0 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.html) |
 * **Ultimo Aggiornamento**: 25 ottobre 2025
+
+## Collegati
+* [Manuale d'uso](https://github.com/alexpvk75/SIMULATORE-ALU-74181-O.PAVLYK/blob/main/manuale.md)
+* [Schema dell'ALU interattiva](https://circuitverse.org/users/311719/projects/alu-74181-final)
