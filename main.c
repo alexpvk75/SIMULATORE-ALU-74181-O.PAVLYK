@@ -404,7 +404,7 @@ void simula_alu_74181(int scelta_clock) {
     int S_arr[4] = {S0, S1, S2, S3};
     int F[4], A_uguale_B, P, Cn_piu_4, G;
     n_ALU74181(Cn, M, A, B, S_arr, F, &A_uguale_B, &P, &Cn_piu_4, &G);
-    if (scelta_clock - 1) {attendi_secondi(0.5);}
+    if (scelta_clock - 1) {attendi_secondi(1.5);}
     if(lingua) {
         printf("\n");
         printf("╔═════════════════════════════════════════════╗\n");
