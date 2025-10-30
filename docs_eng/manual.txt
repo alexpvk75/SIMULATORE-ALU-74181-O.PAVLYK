@@ -186,7 +186,7 @@ Result saved in "results_alu32.txt".
         ALU FUNCTION REFERENCE TABLE (OPTIONS 1, 2, 5, 6)
 ====================================================================
 
-| M | S3 | S2 | S1 | S0 | Cn | Operazione | 
+| M | S3 | S2 | S1 | S0 | Cn | Operation | 
 |---|----|----|----|----|----|------------|
 | 1 | 0  | 0  | 0  | 0  | X  | F = NOT(A)|
 | 1 | 0  | 0  | 0  | 1  | X  | F = NOT(A + B) |
