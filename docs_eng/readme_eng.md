@@ -44,5 +44,5 @@ This is an open-source project developed in collaboration.
 
 ## Links
 
-* [User Manual](https://github.com/alexpvk75/SIMULATORE-ALU-74181-O.PAVLYK/blob/main/manuale.txt)
+* [User Manual](https://github.com/alexpvk75/SIMULATORE-ALU-74181-O.PAVLYK/blob/main/docs_eng/manual.txt)
 * [Interactive ALU Schematic](https://circuitverse.org/users/311719/projects/alu-74181-final)
