@@ -1,77 +1,80 @@
 ====================================================================
-               MANUALE UTENTE - SIMULATORE ALU 74181
+                USER MANUAL – ALU 74181 SIMULATOR
 ====================================================================
 
 ────────────────────────────────────────────────────────────────────
-▶ DESCRIZIONE BREVE
+▶ SHORT DESCRIPTION
 ────────────────────────────────────────────────────────────────────
-Questo programma è un Simulatore di Unità Aritmetica e Logica (ALU) 74181. 
-L'ALU è il "cervello" di un computer, responsabile delle operazioni 
-matematiche (Aritmetica) e logiche (AND, OR, NOT). 
+This program is a Simulator of the Arithmetic and Logic Unit (ALU) 74181.
+The ALU is the “brain” of a computer, responsible for mathematical
+(Arithmetic) and logical (AND, OR, NOT) operations.
 
-Lo strumento è progettato per scopi didattici e per testare le funzioni 
-logiche del chip 74181.
+The tool is designed for educational purposes and to test the logical functions
+of the 74181 chip.
 
 ────────────────────────────────────────────────────────────────────
-▶ ISTRUZIONI DI AVVIO
+▶ STARTUP INSTRUCTIONS
 ────────────────────────────────────────────────────────────────────
 
-1. Nella pagina del progetto premi il tasto "Code" per creare e attivare
-   un nuovo ambiente di sviluppo virtuale (codespace).
+1. In the project page, press the “Code” button to create and activate
+a new virtual development environment (codespace).
 
-2. Compila il codice sorgente C e crea l'eseguibile:
-      gcc main.c -o simulatore
+2. Compile the C source code and create the executable:
+      gcc main.c -o simulator
 
-3. Avvia l'eseguibile:
-      ./simulatore
+3. Run the executable:
+      ./simulator
 
-4. Apparirà il menu principale:
-   - il menu principale è mostrato in italiano per impostazione predefinita,
-   ma può essere cambiato in inglese tramite l’opzione [7]:
+4. The main menu will appear:
+    
+    - the main menu is displayed in Italian by default,
+    but it can be changed to another language using the option:
+    [7] Cambiare lingua (Italiano/Inglese)
 
    ===========================================================
    =                   SIMULATORE ALU 74181                 =
    ===========================================================
-   [0] Esci
-   [1] ALU 74181 a 4 bit
-   [2] ALU 74181 a 4 bit (con clock)
-   [3] Convertitore Binario → Decimale
-   [4] Convertitore Decimale → Binario
-   [5] ALU a 32 bit - 8x74181
-   [6] ALU a 32 bit - 8x74181 (con clock)
-   [7] Cambiare lingua (Italiano/Inglese)
+   [0] Exit
+   [1] 4-bit ALU 74181
+   [2] 4-bit ALU 74181 (with clock)
+   [3] Binary to Decimal Converter
+   [4] Decimal to Binary Converter
+   [5] 32-bit ALU - 8x74181
+   [6] 32-bit ALU - 8x74181 (with clock) 
+   [7] Change language (Italian/English)
    ===========================================================
 
+
 ====================================================================
-                     1. ALU 74181 a 4 bit
+                     1. 4-bit ALU 74181
 ====================================================================
 
-MODALITÀ DI INPUT
+INPUT MODE
 ─────────────────
-Dopo aver selezionato [1], il programma chiederà:
-   Inserire dati manualmente? (S/N):
+After selecting [1], the program will ask:
+    Enter data manually? (Y/N):
 
-Rispondere:
-   - S → inserimento da tastiera
-   - N → lettura da file "input_alu.txt"
-
-────────────────────────────────────────────────────────────────────
-SEZIONE A: INSERIMENTO MANUALE (S)
-────────────────────────────────────────────────────────────────────
-
-Inserire i valori 0 o 1 per:
-
-   • Cn  → Segnale di Carry-in (riporto)
-   • M   → Selettore di modalità (0=aritmetica, 1=logica)
-   • A0–A3, B0–B3 → Operandi binari (4 bit ciascuno)
-   • S0–S3 → Selettori di operazione
+Answer:
+    • Y → input from keyboard
+    • N → read from file "input_alu.txt"
 
 ────────────────────────────────────────────────────────────────────
-OUTPUT E RISULTATI
+SECTION A: MANUAL INPUT (Y)
+────────────────────────────────────────────────────────────────────
+
+Enter the values 0 or 1 for:
+
+    • Cn → Carry-in signal
+    • M → Mode selector (0 = arithmetic, 1 = logic)
+    • A0–A3, B0–B3 → Binary operands (4 bits each)
+    • S0–S3 → Operation selectors
+
+────────────────────────────────────────────────────────────────────
+OUTPUT AND RESULTS
 ────────────────────────────────────────────────────────────────────
 
 ╔═══════════════════════════════════════════════╗
-║           RISULTATI ALU 74181                 ║
+║           ALU 74181 RESULTS                   ║
 ╠═══════════════════════════════════════════════╣
 ║  F0  = ...                                    ║
 ║  F1  = ...                                    ║
@@ -83,17 +86,17 @@ OUTPUT E RISULTATI
 ║  G    = ...                                   ║
 ╚═══════════════════════════════════════════════╝
 
-I risultati vengono anche salvati in:
-   risultati_alu_74181.txt
+Results are also saved in:
+    "results_alu_74181.txt"
 
 ────────────────────────────────────────────────────────────────────
-SEZIONE B: INSERIMENTO TRAMITE FILE (N)
+SECTION B: INPUT VIA FILE (N)
 ────────────────────────────────────────────────────────────────────
 
-File richiesto:  input_alu.txt
-Il programma lo genera automaticamente se mancante.
+Required file: "input_alu.txt"
+The program will automatically generate it if missing.
 
-Formato del file:
+File format:
    Cn: <0>
    M:  <0>
    A0: <0>   
@@ -110,60 +113,60 @@ Formato del file:
    S3: <0>
 
 ====================================================================
-               2. ALU 74181 A 4 BIT (CON CLOCK)
+                2. 4-bit ALU 74181 (with clock)
 ====================================================================
 
-Identica all’opzione [1], ma con ritardo fisso per simulare il tempo 
-di propagazione del circuito logico.
+Identical to option [1], but includes a fixed delay to simulate the
+propagation time of the logic circuit.
 
 ====================================================================
-               3. CONVERTITORE BINARIO → DECIMALE
+                 3. Binary to Decimal Converter
 ====================================================================
 
 Input:
-   • Manuale (S) → Inserisci numero binario
-   • Da file (N) → File "input_bin.txt"
+   • Manual (Y) → Enter binary number
+   • From file (N) → File "input_bin.txt"
 
 Output:
    ╔═════════════════════════════════════════════╗
-   ║        RISULTATI CONVERTITORE               ║
+   ║        CONVERTER RESULTS                    ║
    ╚═════════════════════════════════════════════╝
-   Risultato = <...>
+   Result = <...>
 
-Risultato salvato in "risultati_dec.txt".
+Result saved in "results_dec.txt".
 
 ====================================================================
-               4. CONVERTITORE DECIMALE → BINARIO
+                    4. Decimal to Binary Converter
 ====================================================================
 
 Input:
-   • Manuale (S) → Inserisci numero decimale
-   • Da file (N) → File "input_dec.txt"
+   • Manual (Y) → Enter decimal number
+   • From file (N) → File "input_dec.txt"
 
 Output:
    ╔═════════════════════════════════════════════╗
-   ║        RISULTATI CONVERTITORE               ║
+   ║        CONVERTER RESULTS                    ║
    ╚═════════════════════════════════════════════╝
-   Risultato = <...>
+   Result = <...>
 
-Risultato salvato in "risultati_bin.txt".
+Result saved in "results_bin.txt".
 
 ====================================================================
-                     5–6. ALU A 32 BIT (8x74181)
+                    5–6. 32-bit ALU - 8x74181
 ====================================================================
 
-Simula 8 chip 74181 collegati in cascata.
-L'opzione [6] include il clock (ritardo).
+Simulates 8 cascaded 74181 chips.
+Option [6] includes clock delay.
 
 Input:
-   Operandi(numeri decimali a 32): A, B
-   Segnali:  Cn, M, S0–S3
+   Operands (32-bit decimal numbers): A, B
+   Signals: Cn, M, S0–S3
 
-Modalità:
-   • Manuale (S)
-   • Da file (N): "input_alu32.txt"
-    Operando A: <0>
-    Operando B: <0>
+Modes:
+   • Manual (Y)
+   • From file (N): "input_alu32.txt"
+    Operand A: <0>
+    Operand B: <0>
     Cn: <0>
     M: <0>
     S0: <0>
@@ -173,14 +176,14 @@ Modalità:
 
 Output:
    ╔═════════════════════════════════════════════╗
-   ║           RISULTATI ALU 32 BIT              ║
+   ║           ALU 32bit RESULTS                 ║
    ╚═════════════════════════════════════════════╝
-   Risultato = <...>(numero decimale a 32 bit)
+   Result = <...> (32-bit decimal number)
 
-Risultato salvato in "risultati_alu32.txt".
+Result saved in "results_alu32.txt".
 
 ====================================================================
-      TABELLA DI RIFERIMENTO FUNZIONI ALU (OPZIONI 1, 2, 5, 6)
+        ALU FUNCTION REFERENCE TABLE (OPTIONS 1, 2, 5, 6)
 ====================================================================
 
 | M | S3 | S2 | S1 | S0 | Cn | Operazione | 
@@ -234,9 +237,9 @@ Risultato salvato in "risultati_alu32.txt".
 | 0 | 1  | 1  | 1  | 0  | 1  | F = (A+NOT(B) PLUS A |
 | 0 | 1  | 1  | 1  | 1  | 1  | F = A MINUS 1 |
 ────────────────────────────────────────────────────────────────────
-Legenda:
-   X → valore indifferente
+Legend:
+   X → don’t care value
    * → AND
    + → OR
    ⊕ → XOR
-   PLUS / MINUS → operazioni aritmetiche
+   PLUS / MINUS → arithmetic operations

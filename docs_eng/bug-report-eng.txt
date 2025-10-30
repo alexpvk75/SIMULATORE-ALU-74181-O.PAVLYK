@@ -1,0 +1,26 @@
+FIXED BUGS – ALU Simulator
+
+1. [BUG #001] User Interface Frozen on Non-Numeric Input
+
+   * Description: When an alphanumeric character was entered where a number was expected, the simulator entered an infinite loop.
+   * Resolution: Implemented input validation and error handling.
+
+2. [BUG #002] Improved Input Buffer Management
+
+   * Description: The previous buffer cleaning method (`pulire_buffer()`) could sometimes leave residual characters in memory after using `scanf()`.
+   * Resolution: The function was optimized and redefined to flush the buffer up to the newline character (`\n`) or the end of file (EOF), ensuring more robust and reliable user interface behavior.
+
+3. [BUG #003] Code Overhead and Complexity
+
+   * Description: The code exhibited excessive overhead due to:
+     a) A complex delay system
+     b) Unnecessary dynamic memory management for temporary results
+   * Resolution: The overhead was drastically reduced through a complete refactoring: the timing system was replaced with a scalable and constant model.
+
+4. [BUG #004] Improved I/O Register Interaction**
+
+   * Description: The interaction between output registers and the I/O system was not optimized.
+   * Resolution: The update and data presentation routines for output registers were streamlined and harmonized.
+
+FINAL NOTES:
+All known bugs have been resolved. No critical malfunctions have been detected during standard testing.

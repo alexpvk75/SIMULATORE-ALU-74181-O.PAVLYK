@@ -1,0 +1,53 @@
+This document provides a concise explanation for each function present in the main code of the project, which simulates the 74181 ALU, 74198 registers, and the system clock management.
+
+1. Operating System Recognition Macros
+These macros are used for conditional library inclusion and for implementing system-specific delays (`ritardo_ns`).
+* SISTEMA_WINDOWS – Defines whether the compiler is operating in a Windows environment (based on `_WIN32`). Used to include `windows.h` and to use the `Sleep` function for delays.
+  Value: 1 (Windows) or 0 (Non-Windows)
+* SISTEMA_MAC – Defines whether the compiler is operating on macOS (based on `__APPLE__`).
+  Value: 1 (macOS) or 0 (Non-macOS)
+* SISTEMA_LINUX – Defines whether the compiler is operating on a Linux system (based on `__linux__`).
+  Value: 1 (Linux) or 0 (Non-Linux)
+
+2. Clock and Time Management Functions
+These functions are essential for timing simulation and introducing delays that emulate hardware operation.
+* void ritardo_ns(long nanoseconds) – Implements a delay in nanoseconds (ns). Uses `Sleep` on Windows and an active wait loop using `clock_gettime` on Unix-like systems (Mac/Linux) to achieve the most precise pause possible.
+* void delay(int milliseconds) – Wrapper function that introduces a delay in milliseconds (ms), converting the input to nanoseconds and calling `ritardo_ns`.
+* void clock_step(int *CLK, int *prev_CLK, int milliseconds) – Simulates a single clock step. Toggles the clock state (`*CLK`) and updates `*prev_CLK` to the previous state, introducing a specified delay in milliseconds.
+* void attendi_secondi(double seconds) – Pauses the program for a specified number of seconds. Acts as a wrapper for delay functions and is mainly used for readability and pauses between simulations in the main program.
+3. Validation and I/O Functions
+These functions handle user interaction (reading and cleaning input) and data validation.
+* int leggi_bit_input_74181(const char* name, int* var) – Reads user input and validates it to ensure it’s a binary numeric value (0 or 1). The parameter `name` is used for the prompt (`printf`), and `var` is the pointer to the variable where the read bit is stored. Returns 1 on success, 0 on error.
+* int leggi_bit_input_32(const char* name, int* var) – Similar to `leggi_bit_input_74181`, but used for reading and validating 32-bit binary input for 32-bit ALU operations.
+* void pulire_buffer() – Clears the standard input buffer (`stdin`). Essential to prevent unwanted characters (like the newline `\n` left by `scanf`) from being read in subsequent input calls.
+
+4. Logic Gate Functions
+These functions implement the logic of Boolean gates through their algebraic analogues. They accept 0 or 1 as input and return 0 or 1 as output.
+* int porta_not(int A) – Implements the NOT gate. Inverts the input signal A - Analogue: 1-A
+* int porta_and(int A, int B) – Implements a 2-input AND gate (A and B). Analogue: A*B
+* int porta_or(int A, int B) – Implements a 2-input OR gate (A and B). Analogue: A+B-A*B
+* int porta_exor(int A, int B) – Implements a 2-input EXOR (exclusive OR) gate (A and B). Analogue: A+B-2*A*B
+* int porta_or_3(int A, int B, int C) – Implements a 3-input OR gate (A, B, C).
+* int porta_or_4(int A, int B, int C, int D) – Implements a 4-input OR gate (A, B, C, D).
+* int porta_or_5(int A, int B, int C, int D, int E) – Implements a 5-input OR gate (A, B, C, D, E).
+* int porta_and_3(int A, int B, int C) – Implements a 3-input AND gate (A, B, C).
+* int porta_and_4(int A, int B, int C, int D) – Implements a 4-input AND gate (A, B, C, D).
+* int porta_and_5(int A, int B, int C, int D, int E) – Implements a 5-input AND gate (A, B, C, D, E).
+* int porta_exor_3(int A, int B, int C) – Implements a 3-input EXOR gate (A, B, C).
+* int porta_exor_4(int A, int B, int C, int D) – Implements a 4-input EXOR gate (A, B, C, D).
+* int porta_exor_5(int A, int B, int C, int D, int E) – Implements a 5-input EXOR gate (A, B, C, D, E).
+* int NAND3(int A, int B, int C) – Implements a 3-input NAND gate (A, B, C).
+
+5. Complex Logic Functions (Chips and Decoders)
+These functions simulate more complex digital components using logic gates.
+* void n_SR_FLIP_FLOP(int D, int S_reg, int R_reg, int CLK, int *prev_CLK, int *Q, int *Q_bar) – Simulates an SR (Set-Reset) Flip-Flop at the logic gate level. Takes as input the current state `Q` (pointer), its negated output `Qn` (pointer), `S` (Set), and `R` (Reset).
+* void n_PIPO74198(int D[8], int S_reg[8], int R_reg[8], int CLK, int prev_CLK[8], int Q[8], int Q_bar[8]) – Simulates a PIPO (Parallel-In, Parallel-Out) register based on the 74198 chip. Manages clock, shift, load, and clear operations on data.
+* void reg_PIPO32(int D[32], int S_reg[32], int R_reg[32], int CLK, int prev_CLK[32], int Q[32], int Q_bar[32]) – Implements a 32-bit PIPO register, usable for the 32-bit ALU, by aggregating 32 Flip-Flop blocks.
+* int BIN_DEC_DECODER(const char *binary) – Simulates a Binary-to-Decimal Decoder.
+* char* DEC_BIN_CODER(int number) – Simulates a Decimal-to-Binary Encoder.
+
+6. Main Functions
+* void n_ALU74181(int Cn, int M, int A[4], int B[4], int S[4], int F[4], int *A_equal_B, int *P, int *Cn_plus_4, int *G) – Simulates a 4-bit 74181 ALU base block. Performs 16 logical and 16 arithmetic operations. Takes 12 inputs/outputs including input bits A, B, Carry-In `Cn`, Mode pin `M`, 4 selection bits S0–S3, and pointers to output bits `F`, Carry-Out `Cout`, Propagate `P`, and Generate `G`.
+* void simula_alu_74181(int clock_choice) – Wrapper function that requests user input for the 74181 ALU (A, B, S, M, Cn) and displays the result.
+* void ALU32(int clock_choice) – Simulates a complete 32-bit ALU.
+* int main() – The main function and program entry point. Manages the navigation menu (user choice), calls simulation functions (Decoder, ALU), and handles the clock timing logic to keep the program running.

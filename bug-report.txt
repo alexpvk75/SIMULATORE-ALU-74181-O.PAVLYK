@@ -10,7 +10,9 @@ BUG RISOLTI - Simulatore ALU
    - Risoluzione: La funzione è stata ottimizzata e ridefinita per svuotare il buffer fino al carattere di newline (\n) o al raggiungimento della fine del file (EOF), garantendo una pulizia più robusta e affidabile dell'interfaccia utente.
 
 3. [BUG #003] Overhead e Complessità del Codice
-   - Descrizione: Il codice presentava un eccessivo overhead dovuto a: a) Un sistema di delay complesso b) Una gestione dinamica della memoria non necessaria per i risultati temporanei
+   - Descrizione: Il codice presentava un eccessivo overhead dovuto a: 
+   a) Un sistema di delay complesso 
+   b) Una gestione dinamica della memoria non necessaria per i risultati temporanei
    - Risoluzione: L'overhead è stato drasticamente ridotto tramite refactoring completo: il sistema di timing è stato sostituito con un modello scalabile e costante
 
 4. [BUG #004] Interazione Registro I/O Migliorata
