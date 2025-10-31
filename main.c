@@ -641,7 +641,7 @@ void ALU32(int scelta_clock) {
                                          printf("║            ERRORE              ║\n"); \
                                          printf("╠════════════════════════════════╣\n"); \
                                          printf("║                                ║\n"); \
-                                         printf("║   %s deve essere 0 o 1      ║\n", nome); \
+                                         printf("║   %s deve essere 0 o 1         ║\n", nome); \
                                          printf("║                                ║\n"); \
                                          printf("╚════════════════════════════════╝\n"); \
                                      } else { \
@@ -649,7 +649,7 @@ void ALU32(int scelta_clock) {
                                             printf("║            ERROR               ║\n"); \
                                             printf("╠════════════════════════════════╣\n"); \
                                             printf("║                                ║\n"); \
-                                            printf("║   %s must be 0 or 1          ║\n", nome); \
+                                            printf("║   %s must be 0 or 1            ║\n", nome); \
                                             printf("║                                ║\n"); \
                                             printf("╚════════════════════════════════╝\n"); \
                                         } \
@@ -752,13 +752,13 @@ void ALU32(int scelta_clock) {
     if(lingua) {
         printf("\n");
         printf("╔═════════════════════════════════════════════╗\n");
-        printf("║           RISULTATI ALU 32bit               ║\n");
+        printf("║           RISULTATI ALU 32 bit              ║\n");
         printf("╚═════════════════════════════════════════════╝\n");
         printf("- Risultato      = %u\n", result);
     } else {
         printf("\n");
         printf("╔═════════════════════════════════════════════╗\n");
-        printf("║           ALU 32bit RESULTS                 ║\n");
+        printf("║           32-bit ALU RESULTS                ║\n");
         printf("╚═════════════════════════════════════════════╝\n");
         printf("- Result         = %u\n", result);
     }
@@ -771,7 +771,7 @@ void ALU32(int scelta_clock) {
             fprintf(file_out, "- Risultato      = %u\n", result);
         } else { 
             fprintf(file_out, "╔═════════════════════════════════════════════╗\n");
-            fprintf(file_out, "║           ALU 32bit RESULTS                 ║\n");
+            fprintf(file_out, "║           32-bit ALU RESULTS                ║\n");
             fprintf(file_out, "╚═════════════════════════════════════════════╝\n");
             fprintf(file_out, "- Result         = %u\n", result);
         }
