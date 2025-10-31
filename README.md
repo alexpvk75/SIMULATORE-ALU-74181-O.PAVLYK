@@ -37,4 +37,4 @@ Questo è un progetto open-source sviluppato in collaborazione.
 ## Collegati
 * [Manuale d'uso](https://github.com/alexpvk75/SIMULATORE-ALU-74181-O.PAVLYK/blob/main/manuale.txt)
 * [Schema dell'ALU interattiva](https://circuitverse.org/users/311719/projects/alu-74181-final)
-* [Documentation in English](https://github.com/alexpvk75/SIMULATORE-ALU-74181-O.PAVLYK/blob/main/docs_eng)
+* [Documentation in English](https://github.com/alexpvk75/SIMULATORE-ALU-74181-O.PAVLYK/blob/main/docs_eng/readme_eng.md)
