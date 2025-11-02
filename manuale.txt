@@ -30,8 +30,7 @@ logiche del chip 74181.
    ma può essere cambiato in inglese tramite l’opzione [7]:
 
    ===========================================================
-   =                   SIMULATORE ALU 74181                 =
-   ===========================================================
+   SIMULATORE ALU 74181                 
    [0] Esci
    [1] ALU 74181 a 4 bit
    [2] ALU 74181 a 4 bit (con clock)
@@ -70,18 +69,16 @@ Inserire i valori 0 o 1 per:
 OUTPUT E RISULTATI
 ────────────────────────────────────────────────────────────────────
 
-╔═══════════════════════════════════════════════╗
-║           RISULTATI ALU 74181                 ║
-╠═══════════════════════════════════════════════╣
-║  F0  = ...                                    ║
-║  F1  = ...                                    ║
-║  F2  = ...                                    ║
-║  F3  = ...                                    ║
-║  Cn+4 = ...                                   ║
-║  A=B  = ...                                   ║
-║  P    = ...                                   ║
-║  G    = ...                                   ║
-╚═══════════════════════════════════════════════╝
+═══════════════════════════════════════════════
+RISULTATI ALU 74181
+- F0  = ...                                    
+- F1  = ...                                    
+- F2  = ...                                    
+- F3  = ...                                    
+- Cn+4 = ...                                   
+- A=B  = ...                                   
+- P    = ...                                   
+- G    = ...  
 
 I risultati vengono anche salvati in:
    risultati_alu_74181.txt
@@ -125,10 +122,7 @@ Input:
    • Da file (N) → File "input_bin.txt"
 
 Output:
-   ╔═════════════════════════════════════════════╗
-   ║        RISULTATI CONVERTITORE               ║
-   ╚═════════════════════════════════════════════╝
-   Risultato = <...>
+   Risultato del Convertitore = <...>
 
 Risultato salvato in "risultati_dec.txt".
 
@@ -141,10 +135,7 @@ Input:
    • Da file (N) → File "input_dec.txt"
 
 Output:
-   ╔═════════════════════════════════════════════╗
-   ║        RISULTATI CONVERTITORE               ║
-   ╚═════════════════════════════════════════════╝
-   Risultato = <...>
+   Risultato del Convertitore = <...>
 
 Risultato salvato in "risultati_bin.txt".
 
@@ -172,10 +163,7 @@ Modalità:
     S3: <0>
 
 Output:
-   ╔═════════════════════════════════════════════╗
-   ║           RISULTATI ALU 32 BIT              ║
-   ╚═════════════════════════════════════════════╝
-   Risultato = <...>(numero decimale a 32 bit)
+   Risultato ALU 32 bit = <...>(numero decimale a 32 bit)
 
 Risultato salvato in "risultati_alu32.txt".
 

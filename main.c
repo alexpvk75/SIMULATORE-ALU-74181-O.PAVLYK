@@ -75,9 +75,9 @@ int BIN_DEC_DECODER(const char *binario) {
     } 
     else { 
       if (lingua == 1) {
-        printf("Input non valido. Solo 0 e 1 sono accettati.\n"); 
+        printf("Errore: Input non valido. Solo 0 e 1 sono accettati.\n"); 
       } else {
-        printf("Invalid input. Only 0 and 1 are accepted.\n"); 
+        printf("Error: Invalid input. Only 0 and 1 are accepted.\n"); 
       }
       return -1; 
     } 
@@ -190,21 +190,9 @@ static int leggi_bit_input_74181(const char* nome, int* var) {
     }
     if (porta_not(input_valido)) {
         if (lingua) {
-            printf("╔════════════════════════════════╗\n");
-            printf("║            ERRORE              ║\n");
-            printf("╠════════════════════════════════╣\n");
-            printf("║                                ║\n");
-            printf("║   %s deve essere 0 o 1      ║\n", nome);
-            printf("║                                ║\n");
-            printf("╚════════════════════════════════╝\n");
+            printf("\nErrore: %s deve essere 0 o 1\n", nome);
         } else {
-            printf("╔════════════════════════════════╗\n");
-            printf("║            ERROR               ║\n");
-            printf("╠════════════════════════════════╣\n");
-            printf("║                                ║\n");
-            printf("║   %s must be 0 or 1          ║\n", nome);
-            printf("║                                ║\n");
-            printf("╚════════════════════════════════╝\n");
+            printf("\nError: %s must be 0 or 1\n", nome);
         }
         pulire_buffer();
         return 0;
@@ -221,9 +209,9 @@ void simula_alu_74181(int scelta_clock) {
     char scelta[3];
     int input_valido = 1;
     if (lingua) {
-        printf("Inserire dati manualmente? (S/N): ");
+        printf("\nInserire dati manualmente? (S/N): ");
     } else {
-        printf("Enter data manually? (Y/N): ");
+        printf("\nEnter data manually? (Y/N): ");
     }
     scanf("%2s", scelta);
     scelta[0] = toupper(scelta[0]);
@@ -321,21 +309,9 @@ void simula_alu_74181(int scelta_clock) {
                     if ((var) != 0) { \
                         if ((var) != 1) { \
                             if(lingua) { \
-                                printf("╔════════════════════════════════╗\n"); \
-                                printf("║            ERRORE              ║\n"); \
-                                printf("╠════════════════════════════════╣\n"); \
-                                printf("║                                ║\n"); \
-                                printf("║   %s deve essere 0 o 1      ║\n", nome); \
-                                printf("║                                ║\n"); \
-                                printf("╚════════════════════════════════╝\n"); \
+                                printf("Errore: %s deve essere 0 o 1\n", nome); \
                             } else { \
-                                printf("╔════════════════════════════════╗\n"); \
-                                printf("║            ERROR               ║\n"); \
-                                printf("╠════════════════════════════════╣\n"); \
-                                printf("║                                ║\n"); \
-                                printf("║   %s must be 0 or 1          ║\n", nome); \
-                                printf("║                                ║\n"); \
-                                printf("╚════════════════════════════════╝\n"); \
+                                printf("Error: %s must be 0 or 1\n", nome); \
                             } \
                             input_valido = 0; \
                         } \
@@ -380,94 +356,60 @@ void simula_alu_74181(int scelta_clock) {
     if (scelta_clock - 1) {attendi_secondi(1.5);}
     if(lingua) {
         printf("\n");
-        printf("╔═════════════════════════════════════════════╗\n");
-        printf("║           RISULTATI ALU 74181               ║\n");
-        printf("╠═════════════════════════════════════════════╣\n");
-        printf("║                                             ║\n");
-        printf("║  - F0      = %-3d                            ║\n", F[0]);
-        printf("║  - F1      = %-3d                            ║\n", F[1]);
-        printf("║  - A = B   = %-3d                            ║\n", A_uguale_B);
-        printf("║  - F2      = %-3d                            ║\n", F[2]);
-        printf("║  - F3      = %-3d                            ║\n", F[3]);
-        printf("║  - P       = %-3d                            ║\n", P);
-        printf("║  - Cn + 4  = %-3d                            ║\n", Cn_piu_4);
-        printf("║  - G       = %-3d                            ║\n", G);
-        printf("║                                             ║\n");
-        printf("╚═════════════════════════════════════════════╝\n");
+        printf("RISULTATI ALU 74181\n");
+        printf("- F0      = %-3d\n", F[0]);
+        printf("- F1      = %-3d\n", F[1]);
+        printf("- A = B   = %-3d\n", A_uguale_B);
+        printf("- F2      = %-3d\n", F[2]);
+        printf("- F3      = %-3d\n", F[3]);
+        printf("- P       = %-3d\n", P);
+        printf("- Cn + 4  = %-3d\n", Cn_piu_4);
+        printf("- G       = %-3d\n", G);
     } else {
         printf("\n");
-        printf("╔═════════════════════════════════════════════╗\n");
-        printf("║           ALU 74181 RESULTS                 ║\n");
-        printf("╠═════════════════════════════════════════════╣\n");
-        printf("║                                             ║\n");
-        printf("║  - F0      = %-3d                            ║\n", F[0]);
-        printf("║  - F1      = %-3d                            ║\n", F[1]);
-        printf("║  - A = B   = %-3d                            ║\n", A_uguale_B);
-        printf("║  - F2      = %-3d                            ║\n", F[2]);
-        printf("║  - F3      = %-3d                            ║\n", F[3]);
-        printf("║  - P       = %-3d                            ║\n", P);
-        printf("║  - Cn + 4  = %-3d                            ║\n", Cn_piu_4);
-        printf("║  - G       = %-3d                            ║\n", G);
-        printf("║                                             ║\n");
-        printf("╚═════════════════════════════════════════════╝\n");
+        printf("ALU 74181 RESULTS\n");
+        printf("- F0      = %-3d\n", F[0]);
+        printf("- F1      = %-3d\n", F[1]);
+        printf("- A = B   = %-3d\n", A_uguale_B);
+        printf("- F2      = %-3d\n", F[2]);
+        printf("- F3      = %-3d\n", F[3]);
+        printf("- P       = %-3d\n", P);
+        printf("- Cn + 4  = %-3d\n", Cn_piu_4);
+        printf("- G       = %-3d\n", G);
     }
     
 
     FILE *file_out = fopen("risultati_alu_74181.txt", "w");
     if (file_out) {
         if(lingua){
-            fprintf(file_out, "╔═════════════════════════════════════════════╗\n");
-            fprintf(file_out, "║           RISULTATI ALU 74181               ║\n");
-            fprintf(file_out, "╠═════════════════════════════════════════════╣\n");
-            fprintf(file_out, "║                                             ║\n");
-            fprintf(file_out, "║  - F0      = %-3d                            ║\n", F[0]);
-            fprintf(file_out, "║  - F1      = %-3d                            ║\n", F[1]);
-            fprintf(file_out, "║  - A = B   = %-3d                            ║\n", A_uguale_B);
-            fprintf(file_out, "║  - F2      = %-3d                            ║\n", F[2]);
-            fprintf(file_out, "║  - F3      = %-3d                            ║\n", F[3]);
-            fprintf(file_out, "║  - P       = %-3d                            ║\n", P);
-            fprintf(file_out, "║  - Cn + 4  = %-3d                            ║\n", Cn_piu_4);
-            fprintf(file_out, "║  - G       = %-3d                            ║\n", G);
-            fprintf(file_out, "║                                             ║\n");
-            fprintf(file_out, "╚═════════════════════════════════════════════╝\n");
+            fprintf(file_out, "RISULTATI ALU 74181\n");
+            fprintf(file_out, "- F0      = %-3d\n", F[0]);
+            fprintf(file_out, "- F1      = %-3d\n", F[1]);
+            fprintf(file_out, "- A = B   = %-3d\n", A_uguale_B);
+            fprintf(file_out, "- F2      = %-3d\n", F[2]);
+            fprintf(file_out, "- F3      = %-3d\n", F[3]);
+            fprintf(file_out, "- P       = %-3d\n", P);
+            fprintf(file_out, "- Cn + 4  = %-3d\n", Cn_piu_4);
+            fprintf(file_out, "- G       = %-3d\n", G);
             fclose(file_out);
         } else {
-            fprintf(file_out, "╔═════════════════════════════════════════════╗\n");
-            fprintf(file_out, "║           ALU 74181 RESULTS                 ║\n");
-            fprintf(file_out, "╠═════════════════════════════════════════════╣\n");
-            fprintf(file_out, "║                                             ║\n");
-            fprintf(file_out, "║  - F0      = %-3d                            ║\n", F[0]);
-            fprintf(file_out, "║  - F1      = %-3d                            ║\n", F[1]);
-            fprintf(file_out, "║  - A = B   = %-3d                            ║\n", A_uguale_B);
-            fprintf(file_out, "║  - F2      = %-3d                            ║\n", F[2]);
-            fprintf(file_out, "║  - F3      = %-3d                            ║\n", F[3]);
-            fprintf(file_out, "║  - P       = %-3d                            ║\n", P);
-            fprintf(file_out, "║  - Cn + 4  = %-3d                            ║\n", Cn_piu_4);
-            fprintf(file_out, "║  - G       = %-3d                            ║\n", G);
-            fprintf(file_out, "║                                             ║\n");
-            fprintf(file_out, "╚═════════════════════════════════════════════╝\n");
+            fprintf(file_out, "ALU 74181 RESULTS\n");
+            fprintf(file_out, "- F0      = %-3d\n", F[0]);
+            fprintf(file_out, "- F1      = %-3d\n", F[1]);
+            fprintf(file_out, "- A = B   = %-3d\n", A_uguale_B);
+            fprintf(file_out, "- F2      = %-3d\n", F[2]);
+            fprintf(file_out, "- F3      = %-3d\n", F[3]);
+            fprintf(file_out, "- P       = %-3d\n", P);
+            fprintf(file_out, "- Cn + 4  = %-3d\n", Cn_piu_4);
+            fprintf(file_out, "- G       = %-3d\n", G);
             fclose(file_out);
         }
         
     } else {
         if (lingua) {
-            printf("╔════════════════════════════════╗\n");
-            printf("║            ERRORE              ║\n");
-            printf("╠════════════════════════════════╣\n");
-            printf("║                                ║\n");
-            printf("║   Impossibile aprire file      ║\n");
-            printf("║       di scrittura             ║\n");
-            printf("║                                ║\n");
-            printf("╚════════════════════════════════╝\n");
+            printf("Errore: Impossibile aprire file di scrittura\n");
         } else {
-            printf("╔════════════════════════════════╗\n");
-            printf("║            ERROR               ║\n");
-            printf("╠════════════════════════════════╣\n");
-            printf("║                                ║\n");
-            printf("║  Unable to open output file    ║\n");
-            printf("║       for writing              ║\n");
-            printf("║                                ║\n");
-            printf("╚════════════════════════════════╝\n");
+            printf("Error: Unable to open output file for writing\n");
         }
     }
 
@@ -481,9 +423,9 @@ void ALU32(int scelta_clock) {
     int input_valido = 1;
 
     if (lingua) {
-        printf("Inserire dati manualmente? (S/N): ");
+        printf("\nInserire dati manualmente? (S/N): ");
     } else {
-        printf("Enter data manually? (Y/N): ");
+        printf("\nEnter data manually? (Y/N): ");
     }
     scanf("%2s", scelta);
     scelta[0] = toupper(scelta[0]);
@@ -610,21 +552,9 @@ void ALU32(int scelta_clock) {
                              if (tmp_i != 0) { \
                                  if (tmp_i != 1) { \
                                      if (lingua) { \
-                                         printf("╔════════════════════════════════╗\n"); \
-                                         printf("║            ERRORE              ║\n"); \
-                                         printf("╠════════════════════════════════╣\n"); \
-                                         printf("║                                ║\n"); \
-                                         printf("║   %s deve essere 0 o 1         ║\n", nome); \
-                                         printf("║                                ║\n"); \
-                                         printf("╚════════════════════════════════╝\n"); \
+                                         printf("Errore: %s deve essere 0 o 1\n", nome); \
                                      } else { \
-                                            printf("╔════════════════════════════════╗\n"); \
-                                            printf("║            ERROR               ║\n"); \
-                                            printf("╠════════════════════════════════╣\n"); \
-                                            printf("║                                ║\n"); \
-                                            printf("║   %s must be 0 or 1            ║\n", nome); \
-                                            printf("║                                ║\n"); \
-                                            printf("╚════════════════════════════════╝\n"); \
+                                            printf("Error: %s must be 0 or 1\n", nome); \
                                         } \
                                      input_valido = 0; \
                                  } \
@@ -724,50 +654,24 @@ void ALU32(int scelta_clock) {
     if (scelta_clock - 5) {attendi_secondi(0.5);}
     if(lingua) {
         printf("\n");
-        printf("╔═════════════════════════════════════════════╗\n");
-        printf("║           RISULTATI ALU 32 bit              ║\n");
-        printf("╚═════════════════════════════════════════════╝\n");
-        printf("- Risultato      = %u\n", result);
+        printf("Risultato ALU 32 bit     = %u\n", result);
     } else {
         printf("\n");
-        printf("╔═════════════════════════════════════════════╗\n");
-        printf("║           32-bit ALU RESULTS                ║\n");
-        printf("╚═════════════════════════════════════════════╝\n");
-        printf("- Result         = %u\n", result);
+        printf("32-bit ALU Result         = %u\n", result);
     }
     FILE *file_out = fopen("risultati_alu32.txt", "w");
     if (file_out) {
         if(lingua){
-            fprintf(file_out, "╔═════════════════════════════════════════════╗\n");
-            fprintf(file_out, "║           RISULTATI ALU 32bit               ║\n");
-            fprintf(file_out, "╚═════════════════════════════════════════════╝\n");
-            fprintf(file_out, "- Risultato      = %u\n", result);
-        } else { 
-            fprintf(file_out, "╔═════════════════════════════════════════════╗\n");
-            fprintf(file_out, "║           32-bit ALU RESULTS                ║\n");
-            fprintf(file_out, "╚═════════════════════════════════════════════╝\n");
-            fprintf(file_out, "- Result         = %u\n", result);
+            fprintf(file_out, "Risultato ALU 32 bit     = %u\n", result);
+        } else {
+            fprintf(file_out, "32-bit ALU Result         = %u\n", result);
         }
         fclose(file_out);
     } else {
-        if(lingua){
-            printf("╔════════════════════════════════╗\n");
-            printf("║            ERRORE              ║\n");
-            printf("╠════════════════════════════════╣\n");
-            printf("║                                ║\n");
-            printf("║   Impossibile aprire file      ║\n");
-            printf("║       di scrittura             ║\n");
-            printf("║                                ║\n");
-            printf("╚════════════════════════════════╝\n");
+        if (lingua) {
+            printf("Errore: Impossibile aprire file di scrittura\n");
         } else {
-            printf("╔════════════════════════════════╗\n");
-            printf("║            ERROR               ║\n");
-            printf("╠════════════════════════════════╣\n");
-            printf("║                                ║\n");
-            printf("║  Unable to open output file    ║\n");
-            printf("║       for writing              ║\n");
-            printf("║                                ║\n");
-            printf("╚════════════════════════════════╝\n");
+            printf("Error: Unable to open output file for writing\n");
         }
     }
 }
@@ -778,36 +682,27 @@ int main() {
     char input[10];
     while (1) {   
         if(lingua) {
-            printf("\n╔════════════════════════════════════════════════════════════╗\n");
-            printf("║                                                            ║\n");
-            printf("║                    SIMULATORE ALU 74181                    ║\n");
-            printf("║                                                            ║\n");
-            printf("╠════════════════════════════════════════════════════════════╣\n");
-            printf("║    0. Esci                                                 ║\n");
-            printf("║    1. ALU 74181 a 4 bit                                    ║\n");
-            printf("║    2. ALU 74181 a 4 bit (con clock)                        ║\n");
-            printf("║    3. Convertitore Binario → Decimale                      ║\n");
-            printf("║    4. Convertitore Decimale → Binario                      ║\n");
-            printf("║    5. ALU a 32 bit - 8x74181                               ║\n");
-            printf("║    6. ALU a 32 bit - 8x74181 (con clock)                   ║\n");
-            printf("║    7. Cambiare lingua (Italiano/Inglese)                   ║\n");
-            printf("╚════════════════════════════════════════════════════════════╝\n");
+            printf("\nSIMULATORE ALU 74181\n");
+            printf("0. Esci\n");
+            printf("1. ALU 74181 a 4 bit\n");
+            printf("2. ALU 74181 a 4 bit (con clock)\n");
+            printf("3. Convertitore Binario → Decimale\n");
+            printf("4. Convertitore Decimale → Binario\n");
+            printf("5. ALU a 32 bit - 8x74181\n");
+            printf("6. ALU a 32 bit - 8x74181 (con clock)\n");
+            printf("7. Cambiare lingua (Italiano/Inglese)\n");
+            printf("\n");
             printf(">> Inserisci la tua scelta: ");
         } else {
-            printf("\n╔════════════════════════════════════════════════════════════╗\n");
-            printf("║                                                            ║\n");
-            printf("║                    ALU 74181 SIMULATOR                     ║\n");
-            printf("║                                                            ║\n");
-            printf("╠════════════════════════════════════════════════════════════╣\n");
-            printf("║    0. Exit                                                 ║\n");
-            printf("║    1. 4-bit ALU 74181                                      ║\n");
-            printf("║    2. 4-bit ALU 74181 (with clock)                         ║\n");
-            printf("║    3. Binary to Decimal Converter                          ║\n");
-            printf("║    4. Decimal to Binary Converter                          ║\n");
-            printf("║    5. 32-bit ALU - 8x74181                                 ║\n");
-            printf("║    6. 32-bit ALU - 8x74181 (with clock)                    ║\n");
-            printf("║    7. Change language (Italian/English)                    ║\n");
-            printf("╚════════════════════════════════════════════════════════════╝\n");
+            printf("\nALU 74181 SIMULATOR\n");
+            printf("0. Exit\n");
+            printf("1. 4-bit ALU 74181\n");
+            printf("2. 4-bit ALU 74181 (with clock)\n");
+            printf("3. Binary to Decimal Converter\n");
+            printf("4. Decimal to Binary Converter\n");
+            printf("5. 32-bit ALU - 8x74181\n");
+            printf("6. 32-bit ALU - 8x74181 (with clock)\n");
+            printf("7. Change language (Italian/English)\n");
             printf(">> Enter your choice: "); 
         }
         if (fgets(input, sizeof(input), stdin) == NULL) {
@@ -836,21 +731,9 @@ int main() {
         }
         if (porta_not(isValid)) {
             if(lingua) {
-                printf("\n╔════════════════════════════════╗\n");
-                printf("║             ERRORE             ║\n");
-                printf("╠════════════════════════════════╣\n");
-                printf("║                                ║\n");
-                printf("║   Inserisci un numero valido   ║\n");
-                printf("║                                ║\n");
-                printf("╚════════════════════════════════╝\n");
+                printf("\nErrore: Inserisci un numero valido\n");
             } else {
-                printf("\n╔════════════════════════════════╗\n");
-                printf("║             ERROR              ║\n");
-                printf("╠════════════════════════════════╣\n");
-                printf("║                                ║\n");
-                printf("║   Please enter a valid number  ║\n");
-                printf("║                                ║\n");
-                printf("╚════════════════════════════════╝\n");
+                printf("\nError: Please enter a valid number\n");
             }
             attendi_secondi(3.0);
             continue;
@@ -880,9 +763,9 @@ int main() {
             char bin[33];
             char risposta[3];
             if(lingua) {
-                printf("Inserire dati manualmente? (S/N): ");
+                printf("\nInserire dati manualmente? (S/N): ");
             } else {
-                printf("Enter data manually? (Y/N): ");
+                printf("\nEnter data manually? (Y/N): ");
             }
             scanf("%2s", risposta);
             risposta[0] = toupper(risposta[0]);
@@ -941,15 +824,9 @@ int main() {
                             FILE *file_out = fopen("risultati_dec.txt", "w");
                             if (file_out) {
                                 if(lingua) {
-                                    fprintf(file_out, "╔═════════════════════════════════════════════╗\n");
-                                    fprintf(file_out, "║          RISULTATI CONVERTITORE             ║\n");
-                                    fprintf(file_out, "╚═════════════════════════════════════════════╝\n");
-                                    fprintf(file_out, "Risultato      = %-3d\n", risultato);
+                                    fprintf(file_out, "Risultato del Convertitore     = %-3d\n", risultato);
                                 } else {
-                                    fprintf(file_out, "╔═════════════════════════════════════════════╗\n");
-                                    fprintf(file_out, "║          CONVERTER RESULTS                  ║\n");
-                                    fprintf(file_out, "╚═════════════════════════════════════════════╝\n");
-                                    fprintf(file_out, "Result         = %-3d\n", risultato);
+                                    fprintf(file_out, "Converter Result         = %-3d\n", risultato);
                                 }
                                 fclose(file_out);
                                 pulire_buffer();
@@ -975,9 +852,9 @@ int main() {
             char risposta[3];
             int dec;
             if(lingua) {
-                printf("Inserire dati manualmente? (S/N): ");
+                printf("\nInserire dati manualmente? (S/N): ");
             } else {
-                printf("Enter data manually? (Y/N): ");
+                printf("\nEnter data manually? (Y/N): ");
             }
             scanf("%2s", risposta);
             risposta[0] = toupper(risposta[0]);
@@ -1035,15 +912,9 @@ int main() {
                             FILE *file_out = fopen("risultati_bin.txt", "w");
                             if (file_out) {
                                 if(lingua) {
-                                    fprintf(file_out, "╔═════════════════════════════════════════════╗\n");
-                                    fprintf(file_out, "║          RISULTATI CONVERTITORE             ║\n");
-                                    fprintf(file_out, "╚═════════════════════════════════════════════╝\n");
-                                    fprintf(file_out, "Risultato      = %-16s\n", DEC_BIN_CODER(dec));
+                                    fprintf(file_out, "Risultato del Convertitore     = %-16s\n", DEC_BIN_CODER(dec));
                                 } else {
-                                    fprintf(file_out, "╔═════════════════════════════════════════════╗\n");
-                                    fprintf(file_out, "║          CONVERTER RESULTS                  ║\n");
-                                    fprintf(file_out, "╚═════════════════════════════════════════════╝\n");
-                                    fprintf(file_out, "Result         = %-16s\n", DEC_BIN_CODER(dec));
+                                    fprintf(file_out, "Converter Result         = %-16s\n", DEC_BIN_CODER(dec));
                                 }
                                 fclose(file_out);
                                 pulire_buffer();
@@ -1089,21 +960,9 @@ int main() {
         }
         else {
             if (lingua) {
-                printf("\n╔════════════════════════════════╗\n");
-                printf("║             ERRORE             ║\n");
-                printf("╠════════════════════════════════╣\n");
-                printf("║                                ║\n");
-                printf("║       Scelta non valida!       ║\n");
-                printf("║                                ║\n");
-                printf("╚════════════════════════════════╝\n");
+                printf("\nError: Scelta non valida\n");
             } else {
-                printf("\n╔════════════════════════════════╗\n");
-                printf("║             ERROR              ║\n");
-                printf("╠════════════════════════════════╣\n");
-                printf("║                                ║\n");
-                printf("║      Invalid choice!           ║\n");
-                printf("║                                ║\n");
-                printf("╚════════════════════════════════╝\n");
+                printf("\nError: Invalid choice!\n");
             }
             attendi_secondi(3.0);
             continue;

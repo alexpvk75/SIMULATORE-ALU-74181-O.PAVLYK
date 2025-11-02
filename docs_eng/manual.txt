@@ -32,8 +32,7 @@ a new virtual development environment (codespace).
     [7] Cambiare lingua (Italiano/Inglese)
 
    ===========================================================
-   =                   SIMULATORE ALU 74181                 =
-   ===========================================================
+   SIMULATORE ALU 74181
    [0] Exit
    [1] 4-bit ALU 74181
    [2] 4-bit ALU 74181 (with clock)
@@ -73,18 +72,16 @@ Enter the values 0 or 1 for:
 OUTPUT AND RESULTS
 ────────────────────────────────────────────────────────────────────
 
-╔═══════════════════════════════════════════════╗
-║           ALU 74181 RESULTS                   ║
-╠═══════════════════════════════════════════════╣
-║  F0  = ...                                    ║
-║  F1  = ...                                    ║
-║  F2  = ...                                    ║
-║  F3  = ...                                    ║
-║  Cn+4 = ...                                   ║
-║  A=B  = ...                                   ║
-║  P    = ...                                   ║
-║  G    = ...                                   ║
-╚═══════════════════════════════════════════════╝
+═══════════════════════════════════════════════
+ALU 74181 RESULTS
+- F0  = ...                                    
+- F1  = ...                                    
+- F2  = ...                                    
+- F3  = ...                                    
+- Cn+4 = ...                                   
+- A=B  = ...                                   
+- P    = ...                                   
+- G    = ...                                   
 
 Results are also saved in:
     "results_alu_74181.txt"
@@ -128,10 +125,7 @@ Input:
    • From file (N) → File "input_bin.txt"
 
 Output:
-   ╔═════════════════════════════════════════════╗
-   ║        CONVERTER RESULTS                    ║
-   ╚═════════════════════════════════════════════╝
-   Result = <...>
+   Converter Result = <...>
 
 Result saved in "results_dec.txt".
 
@@ -144,10 +138,7 @@ Input:
    • From file (N) → File "input_dec.txt"
 
 Output:
-   ╔═════════════════════════════════════════════╗
-   ║        CONVERTER RESULTS                    ║
-   ╚═════════════════════════════════════════════╝
-   Result = <...>
+   Converter Result = <...>
 
 Result saved in "results_bin.txt".
 
@@ -175,10 +166,7 @@ Modes:
     S3: <0>
 
 Output:
-   ╔═════════════════════════════════════════════╗
-   ║           ALU 32bit RESULTS                 ║
-   ╚═════════════════════════════════════════════╝
-   Result = <...> (32-bit decimal number)
+   32-bit ALU Result = <...> (32-bit decimal number)
 
 Result saved in "results_alu32.txt".
 
