@@ -30,7 +30,7 @@ Questo strumento è stato pensato per essere di supporto in diversi contesti:
 
 Questo è un progetto open-source sviluppato in collaborazione.
 * **Autori**:  Leonardo Galli, Oleksandr Pavlyk, Davide Ning Yu, Zheming Feng, Danilo Ambrogio Brusa, Bohan Yang
-* **Licenza**: [GNU General Public License v3.0 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.html) |
+* **Licenza**: [GNU General Public License v3.0 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.html)
 * **Ultimo Aggiornamento**: 2 Novembre 2025
 
 ## Collegati
