@@ -5,22 +5,6 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <stdbool.h>
-#if defined(_WIN32)
-#define SISTEMA_WINDOWS 1
-#include <windows.h>
-#else
-#define SISTEMA_WINDOWS 0
-#endif
-#ifdef __APPLE__
-#define SISTEMA_MAC 1
-#else
-#define SISTEMA_MAC 0
-#endif
-#ifdef __linux__
-#define SISTEMA_LINUX 1
-#else
-#define SISTEMA_LINUX 0
-#endif
 
 static int leggi_bit_input_74181(const char* nome, int* var);
 static int leggi_bit_input_32(const char* nome, int* var);
@@ -28,21 +12,12 @@ static int leggi_bit_input_32(const char* nome, int* var);
 static int lingua = 1; // 1: Italiano, 0: English
 
 void ritardo_ns(long nanosecondi) {
-#if SISTEMA_WINDOWS
-    long ms = nanosecondi / 1000000L;
-    if (ms <= 0) {
-        if (nanosecondi > 0) {
-            ms = 1; 
-        }
+    clock_t start = clock();
+    clock_t wait = (clock_t)((double)nanosecondi / 1e9 * CLOCKS_PER_SEC);
+
+    while ((clock() - start) < wait) {
+        // busy-wait
     }
-    Sleep((DWORD)ms);
-#else
-    struct timespec inizio, attuale;
-    clock_gettime(CLOCK_MONOTONIC, &inizio);
-    do {
-        clock_gettime(CLOCK_MONOTONIC, &attuale);
-    } while ((attuale.tv_sec - inizio.tv_sec) * 1000000000L + (attuale.tv_nsec - inizio.tv_nsec) < nanosecondi);
-#endif
 }
 void delay(int milliseconds) {
     long ns = (long)milliseconds * 1000000L;
