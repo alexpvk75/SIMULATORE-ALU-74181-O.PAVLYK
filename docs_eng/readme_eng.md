@@ -40,7 +40,7 @@ This is an open-source project developed in collaboration.
 
 * **Authors:** Leonardo Galli, Oleksandr Pavlyk, Davide Ning Yu, Zheming Feng, Danilo Ambrogio Brusa, Bohan Yang
 * **License:** [GNU General Public License v3.0 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.html)
-* **Last Update:** October 31, 2025
+* **Last Update:** November 2, 2025
 
 ## Links
 
