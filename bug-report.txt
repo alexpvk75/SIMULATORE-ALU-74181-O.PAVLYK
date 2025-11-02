@@ -18,5 +18,10 @@ BUG RISOLTI - Simulatore ALU
 4. [BUG #004] Interazione Registro I/O Migliorata
    - Descrizione: L'interazione tra i registri di uscita e il sistema I/O del codice non era ottimizzata
    - Risoluzione: Le routine di aggiornamento e presentazione dei dati in uscita dai registri sono state armonizzate e semplificate
+
+5. [BUG #005] Ritardo cross-platform risolto
+   - Descrizione: La funzione di ritardo (ritardo_ns) dipendeva da Sleep, causando malfunzionamenti su sistemi Linux e macOS.
+   - Risoluzione: Implementata una versione completamente cross-platform della funzione di ritardo, funzionante correttamente su Windows, Linux e macOS, senza dipendere da macro specifiche.
+
 NOTE FINALI:
 Tutti i bug noti sono stati risolti. Al momento non sono presenti malfunzionamenti critici rilevati nei test standard.

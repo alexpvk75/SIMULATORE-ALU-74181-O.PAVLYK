@@ -22,5 +22,10 @@ FIXED BUGS – ALU Simulator
    * Description: The interaction between output registers and the I/O system was not optimized.
    * Resolution: The update and data presentation routines for output registers were streamlined and harmonized.
 
+5. [BUG #005] Cross-platform delay fixed
+
+   * Description: The delay function (ritardo_ns) relied on Sleep, causing malfunctions on Linux and macOS systems.
+   * Resolution: Implemented a fully cross-platform version of the delay function that works correctly on Windows, Linux, and macOS, without relying on platform-specific macros.
+
 FINAL NOTES:
 All known bugs have been resolved. No critical malfunctions have been detected during standard testing.

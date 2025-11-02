@@ -15,9 +15,7 @@ void ritardo_ns(long nanosecondi) {
     clock_t start = clock();
     clock_t wait = (clock_t)((double)nanosecondi / 1e9 * CLOCKS_PER_SEC);
 
-    while ((clock() - start) < wait) {
-        // busy-wait
-    }
+    while ((clock() - start) < wait) {}
 }
 void delay(int milliseconds) {
     long ns = (long)milliseconds * 1000000L;
