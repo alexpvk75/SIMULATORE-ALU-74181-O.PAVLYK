@@ -14,7 +14,6 @@ The simulator offers a range of advanced features for study and experimentation:
 * **Extension to 32 bits** through cascading architecture (as in real CPUs)
 * Implementation of **PIPO (Parallel-In/Parallel-Out)** registers using SR flip-flops
 * **Automatic detection of the host CPU** and clock frequency estimation to simulate real clock cycles
-* **Cross-platform compatibility:** designed to run on Windows, Linux, and macOS
 
 ---
 
