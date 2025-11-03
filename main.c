@@ -57,9 +57,9 @@ void reg_PIPO32(int D[32], int S_reg[32], int R_reg[32], int CLK, int prev_CLK[3
 int BIN_DEC_DECODER(const char *binario) { 
   if (binario == NULL) { 
     if(lingua) {
-      printf("ERRORE: input NULL non valido.\n"); 
+      printf(">> ERRORE: input NULL non valido.\n"); 
     } else {
-      printf("ERROR: invalid NULL input.\n");
+      printf(">> ERROR: invalid NULL input.\n");
     }
     return -1; 
   } 
@@ -74,9 +74,9 @@ int BIN_DEC_DECODER(const char *binario) {
     } 
     else { 
       if (lingua == 1) {
-        printf("Errore: Input non valido. Solo 0 e 1 sono accettati.\n"); 
+        printf(">> Errore: Input non valido. Solo 0 e 1 sono accettati.\n"); 
       } else {
-        printf("Error: Invalid input. Only 0 and 1 are accepted.\n"); 
+        printf(">> Error: Invalid input. Only 0 and 1 are accepted.\n"); 
       }
       return -1; 
     } 
@@ -189,9 +189,9 @@ static int leggi_bit_input_74181(const char* nome, int* var) {
     }
     if (porta_not(input_valido)) {
         if (lingua) {
-            printf("\nErrore: %s deve essere 0 o 1\n", nome);
+            printf("\n>> Errore: %s deve essere 0 o 1\n", nome);
         } else {
-            printf("\nError: %s must be 0 or 1\n", nome);
+            printf("\n>> Error: %s must be 0 or 1\n", nome);
         }
         pulire_buffer();
         return 0;
@@ -208,9 +208,9 @@ void simula_alu_74181(int scelta_clock) {
     char scelta[3];
     int input_valido = 1;
     if (lingua) {
-        printf("\nInserire dati manualmente? (S/N): ");
+        printf("\n>> Inserire dati manualmente? (S/N): ");
     } else {
-        printf("\nEnter data manually? (Y/N): ");
+        printf("\n>> Enter data manually? (Y/N): ");
     }
     scanf("%2s", scelta);
     scelta[0] = toupper(scelta[0]);
@@ -252,9 +252,9 @@ void simula_alu_74181(int scelta_clock) {
             file = fopen("input_alu.txt", "w");
             if (file == NULL) {
                 if (lingua) {
-                    printf("ERRORE: Impossibile creare il file input_alu.txt\n");
+                    printf(">> ERRORE: Impossibile creare il file input_alu.txt\n");
                 } else {
-                    printf("ERROR: Unable to create file input_alu.txt\n");
+                    printf(">> ERROR: Unable to create file input_alu.txt\n");
                 }
                 input_valido = 0;
             } else {
@@ -275,9 +275,9 @@ void simula_alu_74181(int scelta_clock) {
                 fclose(file);
                 if (scelta_clock - 1) {attendi_secondi(0.5);}
                 if (lingua) {
-                    printf("Creato file input_alu.txt. Compilarlo e riavviare.\n");
+                    printf(">> Creato file input_alu.txt. Compilarlo e riavviare.\n");
                 } else {
-                    printf("Created file input_alu.txt. Fill it and restart.\n");
+                    printf(">> Created file input_alu.txt. Fill it and restart.\n");
                 }
                 input_valido = 0;
             }
@@ -288,18 +288,18 @@ void simula_alu_74181(int scelta_clock) {
                 result_fgets_macro = fgets(line, sizeof(line), file); \
                 if (result_fgets_macro == NULL) { \
                     if (lingua) { \
-                        printf("ERRORE: Formato file incompleto (%s)\n", nome); \
+                        printf(">> ERRORE: Formato file incompleto (%s)\n", nome); \
                     } else { \
-                        printf("ERROR: Incomplete file format (%s)\n", nome); \
+                        printf(">> ERROR: Incomplete file format (%s)\n", nome); \
                     } \
                     input_valido = 0; \
                 } \
                 if (input_valido == 1) { \
                     if (sscanf(line, "%*[^<]<%d>", &(var)) != 1) { \
                         if(lingua) { \
-                            printf("ERRORE: Valore non valido in %s\n", nome); \
+                            printf(">> ERRORE: Valore non valido in %s\n", nome); \
                         } else { \
-                            printf("ERROR: Invalid value in %s\n", nome); \
+                            printf(">> ERROR: Invalid value in %s\n", nome); \
                         } \
                         input_valido = 0; \
                     } \
@@ -308,9 +308,9 @@ void simula_alu_74181(int scelta_clock) {
                     if ((var) != 0) { \
                         if ((var) != 1) { \
                             if(lingua) { \
-                                printf("Errore: %s deve essere 0 o 1\n", nome); \
+                                printf(">> Errore: %s deve essere 0 o 1\n", nome); \
                             } else { \
-                                printf("Error: %s must be 0 or 1\n", nome); \
+                                printf(">> Error: %s must be 0 or 1\n", nome); \
                             } \
                             input_valido = 0; \
                         } \
@@ -342,9 +342,9 @@ void simula_alu_74181(int scelta_clock) {
     }
     if (scelta_clock - 1) {
         if(lingua) {
-            printf("Elaborazione in corso...\n");
+            printf(">> Elaborazione in corso...\n");
         } else{
-            printf("Processing...\n");
+            printf(">> Processing...\n");
         }
     }
     int A[4] = {A0, A1, A2, A3};
@@ -406,9 +406,9 @@ void simula_alu_74181(int scelta_clock) {
         
     } else {
         if (lingua) {
-            printf("Errore: Impossibile aprire file di scrittura\n");
+            printf(">> Errore: Impossibile aprire file di scrittura\n");
         } else {
-            printf("Error: Unable to open output file for writing\n");
+            printf(">> Error: Unable to open output file for writing\n");
         }
     }
 
@@ -422,9 +422,9 @@ void ALU32(int scelta_clock) {
     int input_valido = 1;
 
     if (lingua) {
-        printf("\nInserire dati manualmente? (S/N): ");
+        printf("\n>> Inserire dati manualmente? (S/N): ");
     } else {
-        printf("\nEnter data manually? (Y/N): ");
+        printf("\n>> Enter data manually? (Y/N): ");
     }
     scanf("%2s", scelta);
     scelta[0] = toupper(scelta[0]);
@@ -440,9 +440,9 @@ void ALU32(int scelta_clock) {
         }
         if (scanf("%u", &operandoA) != 1) {
             if(lingua){
-                printf("ERRORE: Input operando A non valido.\n");
+                printf(">> ERRORE: Input operando A non valido.\n");
             } else {
-                printf("ERROR: Invalid input for operand A.\n");
+                printf(">> ERROR: Invalid input for operand A.\n");
             }
             input_valido = 0;
         }
@@ -455,9 +455,9 @@ void ALU32(int scelta_clock) {
         }
         if (scanf("%u", &operandoB) != 1) {
             if (lingua){
-                printf("ERRORE: Input operando B non valido.\n");
+                printf(">> ERRORE: Input operando B non valido.\n");
             } else {
-                printf("ERROR: Invalid input for operand B.\n");
+                printf(">> ERROR: Invalid input for operand B.\n");
             }
             input_valido = 0;
         }
@@ -482,9 +482,9 @@ void ALU32(int scelta_clock) {
             file = fopen("input_alu32.txt", "w");
             if (file == NULL) {
                 if (lingua){
-                    printf("ERRORE: Impossibile creare il file input_alu32.txt\n");
+                    printf(">> ERRORE: Impossibile creare il file input_alu32.txt\n");
                 } else {
-                    printf("ERROR: Unable to create file input_alu32.txt\n");
+                    printf(">> ERROR: Unable to create file input_alu32.txt\n");
                 }
                 input_valido = 0;
             } else {
@@ -507,9 +507,9 @@ void ALU32(int scelta_clock) {
                 fclose(file);
                 if (scelta_clock - 5) {attendi_secondi(0.5);}
                 if(lingua){
-                    printf("Creato file input_alu32.txt. Compilarlo e riavviare.\n");
+                    printf(">> Creato file input_alu32.txt. Compilarlo e riavviare.\n");
                 } else {
-                    printf("Created file input_alu32.txt. Fill it and restart.\n");
+                    printf(">> Created file input_alu32.txt. Fill it and restart.\n");
                 }
                 input_valido = 0;
             }
@@ -519,9 +519,9 @@ void ALU32(int scelta_clock) {
             #define LEGGI_DA_FILE(var, nome, is_unsigned) do { \
                 if (fgets(line, sizeof(line), file) == NULL) { \
                     if (lingua) {\
-                        printf("ERRORE: Formato file incompleto (%s)\n", nome); \
+                        printf(">> ERRORE: Formato file incompleto (%s)\n", nome); \
                     } else { \
-                        printf("ERROR: Incomplete file format (%s)\n", nome); \
+                        printf(">> ERROR: Incomplete file format (%s)\n", nome); \
                     } \
                      input_valido = 0; \
                  } else { \
@@ -529,9 +529,9 @@ void ALU32(int scelta_clock) {
                          unsigned int tmp_u; \
                          if (sscanf(line, "%*[^<]<%u>", &tmp_u) != 1) { \
                             if(lingua) { \
-                                 printf("ERRORE: Valore non valido in %s\n", nome); \
+                                 printf(">> ERRORE: Valore non valido in %s\n", nome); \
                             } else { \
-                                    printf("ERROR: Invalid value in %s\n", nome); \
+                                    printf(">> ERROR: Invalid value in %s\n", nome); \
                             } \
                              input_valido = 0; \
                          } else { \
@@ -541,9 +541,9 @@ void ALU32(int scelta_clock) {
                          int tmp_i; \
                          if (sscanf(line, "%*[^<]<%d>", &tmp_i) != 1) { \
                              if (lingua) { \
-                                 printf("ERRORE: Valore non valido in %s\n", nome); \
+                                 printf(">> ERRORE: Valore non valido in %s\n", nome); \
                              } else { \
-                                    printf("ERROR: Invalid value in %s\n", nome); \
+                                    printf(">> ERROR: Invalid value in %s\n", nome); \
                                 } \
                              input_valido = 0; \
                          } \
@@ -551,9 +551,9 @@ void ALU32(int scelta_clock) {
                              if (tmp_i != 0) { \
                                  if (tmp_i != 1) { \
                                      if (lingua) { \
-                                         printf("Errore: %s deve essere 0 o 1\n", nome); \
+                                         printf(">> Errore: %s deve essere 0 o 1\n", nome); \
                                      } else { \
-                                            printf("Error: %s must be 0 or 1\n", nome); \
+                                            printf(">> Error: %s must be 0 or 1\n", nome); \
                                         } \
                                      input_valido = 0; \
                                  } \
@@ -593,9 +593,9 @@ void ALU32(int scelta_clock) {
     if (porta_not(input_valido)) { return; }
     if (scelta_clock - 5) {
         if(lingua) {
-            printf("Elaborazione in corso...\n");
+            printf(">> Elaborazione in corso...\n");
         } else{
-            printf("Processing...\n");
+            printf(">> Processing...\n");
         }
     }
     int D_A[32], D_B[32], D_F[32];
@@ -653,10 +653,10 @@ void ALU32(int scelta_clock) {
     if (scelta_clock - 5) {attendi_secondi(0.5);}
     if(lingua) {
         printf("\n");
-        printf("Risultato ALU 32 bit     = %u\n", result);
+        printf(">> Risultato ALU 32 bit     = %u\n", result);
     } else {
         printf("\n");
-        printf("32-bit ALU Result         = %u\n", result);
+        printf(">> 32-bit ALU Result         = %u\n", result);
     }
     FILE *file_out = fopen("risultati_alu32.txt", "w");
     if (file_out) {
@@ -668,9 +668,9 @@ void ALU32(int scelta_clock) {
         fclose(file_out);
     } else {
         if (lingua) {
-            printf("Errore: Impossibile aprire file di scrittura\n");
+            printf(">> Errore: Impossibile aprire file di scrittura\n");
         } else {
-            printf("Error: Unable to open output file for writing\n");
+            printf(">> Error: Unable to open output file for writing\n");
         }
     }
 }
@@ -706,9 +706,9 @@ int main() {
         }
         if (fgets(input, sizeof(input), stdin) == NULL) {
             if (lingua) {
-                printf("Errore di input.\n");
+                printf(">> Errore di input.\n");
             } else {
-                printf("Input error.\n");
+                printf(">> Input error.\n");
             }
             continue;
         }
@@ -730,9 +730,9 @@ int main() {
         }
         if (porta_not(isValid)) {
             if(lingua) {
-                printf("\nErrore: Inserisci un numero valido\n");
+                printf("\n>> Errore: Inserisci un numero valido\n");
             } else {
-                printf("\nError: Please enter a valid number\n");
+                printf("\n>> Error: Please enter a valid number\n");
             }
             attendi_secondi(3.0);
             continue;
@@ -740,9 +740,9 @@ int main() {
         scelta = atoi(input);
         if (scelta == 0) {
             if(lingua) {
-                printf("Uscita dal programma...\n");
+                printf(">> Uscita dal programma...\n");
             } else {
-                printf("Exiting the program...\n");
+                printf(">> Exiting the program...\n");
             }
             break;
         }
@@ -762,9 +762,9 @@ int main() {
             char bin[33];
             char risposta[3];
             if(lingua) {
-                printf("\nInserire dati manualmente? (S/N): ");
+                printf("\n>> Inserire dati manualmente? (S/N): ");
             } else {
-                printf("\nEnter data manually? (Y/N): ");
+                printf("\n>> Enter data manually? (Y/N): ");
             }
             scanf("%2s", risposta);
             risposta[0] = toupper(risposta[0]);
@@ -781,9 +781,9 @@ int main() {
                 int risultato = BIN_DEC_DECODER(bin);
                 if (risultato != -1) {
                     if (lingua) {
-                        printf("Risultato (decimale): %d\n", risultato);
+                        printf(">> Risultato (decimale): %d\n", risultato);
                     } else {
-                        printf("Result (decimal): %d\n", risultato);
+                        printf(">> Result (decimal): %d\n", risultato);
                     }
                     pulire_buffer();
                     continue;
@@ -794,9 +794,9 @@ int main() {
                     file = fopen("input_bin.txt", "w");
                     if (file == NULL) {
                         if(lingua) {
-                            printf("ERRORE: Impossibile creare il file\n");
+                            printf(">> ERRORE: Impossibile creare il file\n");
                         } else {
-                            printf("ERROR: Unable to create the file\n");
+                            printf(">> ERROR: Unable to create the file\n");
                         }
                         continue;
                     } else {
@@ -807,9 +807,9 @@ int main() {
                         }
                         fclose(file);
                         if(lingua) {
-                            printf("Creato file input_bin.txt. Compilarlo e riavviare.\n");
+                            printf(">> Creato file input_bin.txt. Compilarlo e riavviare.\n");
                         } else {
-                            printf("Created file input_bin.txt. Fill it and restart.\n");
+                            printf(">> Created file input_bin.txt. Fill it and restart.\n");
                         }
                         pulire_buffer();
                         continue;
@@ -835,9 +835,9 @@ int main() {
                     } else {
                         fclose(file);
                         if(lingua) {
-                            printf("ERRORE: Formato file incompleto\n");
+                            printf(">> ERRORE: Formato file incompleto\n");
                         } else {
-                            printf("ERROR: Incomplete file format\n");
+                            printf(">> ERROR: Incomplete file format\n");
                         }
                         pulire_buffer();
                         continue;
@@ -851,9 +851,9 @@ int main() {
             char risposta[3];
             int dec;
             if(lingua) {
-                printf("\nInserire dati manualmente? (S/N): ");
+                printf("\n>> Inserire dati manualmente? (S/N): ");
             } else {
-                printf("\nEnter data manually? (Y/N): ");
+                printf("\n>> Enter data manually? (Y/N): ");
             }
             scanf("%2s", risposta);
             risposta[0] = toupper(risposta[0]);
@@ -868,9 +868,9 @@ int main() {
                 }
                 scanf("%d", &dec);
                 if(lingua) {
-                    printf("Risultato (binario): %s\n", DEC_BIN_CODER(dec));
+                    printf(">> Risultato (binario): %s\n", DEC_BIN_CODER(dec));
                 } else {
-                    printf("Result (binary): %s\n", DEC_BIN_CODER(dec));
+                    printf(">> Result (binary): %s\n", DEC_BIN_CODER(dec));
                 }
                 pulire_buffer();
                 continue;
@@ -880,9 +880,9 @@ int main() {
                     file = fopen("input_dec.txt", "w");
                     if (file == NULL) {
                         if(lingua) {
-                            printf("ERRORE: Impossibile creare il file\n");
+                            printf(">> ERRORE: Impossibile creare il file\n");
                         } else {
-                            printf("ERROR: Unable to create the file\n");
+                            printf(">> ERROR: Unable to create the file\n");
                         }
                         pulire_buffer();
                         continue;
@@ -894,9 +894,9 @@ int main() {
                         }
                         fclose(file);
                         if(lingua) {
-                            printf("Creato file input_dec.txt. Compilarlo e riavviare.\n");
+                            printf(">> Creato file input_dec.txt. Compilarlo e riavviare.\n");
                         } else {
-                            printf("Created file input_dec.txt. Fill it and restart.\n");
+                            printf(">> Created file input_dec.txt. Fill it and restart.\n");
                         }
                         pulire_buffer();
                         continue;
@@ -923,9 +923,9 @@ int main() {
                     } else {
                         fclose(file);
                         if(lingua){
-                            printf("ERRORE: Formato file incompleto\n");
+                            printf(">> ERRORE: Formato file incompleto\n");
                         } else {
-                            printf("ERROR: Incomplete file format\n");
+                            printf(">> ERROR: Incomplete file format\n");
                         }
                         pulire_buffer();
                         continue;
@@ -950,18 +950,18 @@ int main() {
         else if (scelta == 7) {
             lingua = porta_not(lingua);
             if (lingua) {
-                printf("Lingua cambiata in Italiano.\n");
+                printf(">> Lingua cambiata in Italiano.\n");
             } else {
-                printf("Language changed to English.\n");
+                printf(">> Language changed to English.\n");
             }
             attendi_secondi(2.0);
             continue;
         }
         else {
             if (lingua) {
-                printf("\nError: Scelta non valida\n");
+                printf("\n>> Error: Scelta non valida\n");
             } else {
-                printf("\nError: Invalid choice!\n");
+                printf("\n>> Error: Invalid choice!\n");
             }
             attendi_secondi(3.0);
             continue;
