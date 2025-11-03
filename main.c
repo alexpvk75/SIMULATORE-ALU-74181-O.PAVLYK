@@ -685,8 +685,8 @@ int main() {
             printf("0. Esci\n");
             printf("1. ALU 74181 a 4 bit\n");
             printf("2. ALU 74181 a 4 bit (con clock)\n");
-            printf("3. Convertitore Binario → Decimale\n");
-            printf("4. Convertitore Decimale → Binario\n");
+            printf("3. Convertitore Binario -> Decimale\n");
+            printf("4. Convertitore Decimale -> Binario\n");
             printf("5. ALU a 32 bit - 8x74181\n");
             printf("6. ALU a 32 bit - 8x74181 (con clock)\n");
             printf("7. Cambiare lingua (Italiano/Inglese)\n");
