@@ -222,7 +222,7 @@ Result saved in "results_alu32.txt".
 | 0 | 1  | 0  | 1  | 1  | 1  | F = AB MINUS 1                 |
 | 0 | 1  | 1  | 0  | 0  | 1  | F = A PLUS A                   |
 | 0 | 1  | 1  | 0  | 1  | 1  | F = (A+B) PLUS A               |
-| 0 | 1  | 1  | 1  | 0  | 1  | F = (A+NOT(B) PLUS A           |
+| 0 | 1  | 1  | 1  | 0  | 1  | F = (A+NOT(B)) PLUS A          |
 | 0 | 1  | 1  | 1  | 1  | 1  | F = A MINUS 1                  |
 ───────────────────────────────────────────────────────────────
 Legend:
