@@ -3,7 +3,6 @@
 #include <string.h>
 #include <time.h>
 #include <ctype.h>
-#include <unistd.h>
 #include <stdbool.h>
 
 static int leggi_bit_input_74181(const char* nome, int* var);
